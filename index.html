@@ -266,7 +266,7 @@
       font-size: 0.95rem;
     }
 
-    /* POPRAWIONA TABELA KOMEND */
+    /* TABELA KOMEND */
     .commands-table {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -277,7 +277,7 @@
 
     .command-row {
       display: grid;
-      grid-template-columns: 310px 1fr; /* Zwiększona szerokość lewej kolumny dla długich komend */
+      grid-template-columns: 310px 1fr;
       padding: 1.2rem 1.5rem;
       border-bottom: 1px solid var(--card-border);
       align-items: center;
@@ -334,6 +334,89 @@
       display: block;
       color: var(--muted);
       margin-top: 0.25rem;
+    }
+
+    /* SEKCJA FAQ */
+    .faq-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 5rem;
+    }
+
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .faq-item:hover {
+      border-color: var(--green);
+    }
+
+    .faq-question {
+      padding: 1.2rem 1.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .faq-question::after {
+      content: "+";
+      font-size: 1.4rem;
+      color: var(--green);
+      transition: transform 0.3s;
+    }
+
+    .faq-item.active .faq-question::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+      padding: 0 1.5rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding-bottom: 1.2rem;
+    }
+
+    /* TOAST NOTIFICATION */
+    #toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--card-bg);
+      border: 1px solid var(--green);
+      color: var(--text);
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px var(--green-glow);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    #toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    #toast span {
+      color: var(--green);
     }
 
     @media (max-width: 768px) {
@@ -447,7 +530,7 @@
         <div class="command-row">
           <div class="command-left">
             <span class="command-name">/shot</span>
-            <button class="copy-btn" onclick="copyCommand('/shot', event)">Kopiuj</button>
+            <button class="copy-btn" onclick="copyCommand('/shot')">Kopiuj</button>
           </div>
           <div class="command-desc">
             Wycina wideo wstecz od momentu wywołania polecenia.
@@ -457,7 +540,7 @@
         <div class="command-row">
           <div class="command-left">
             <span class="command-name">/screen</span>
-            <button class="copy-btn" onclick="copyCommand('/screen', event)">Kopiuj</button>
+            <button class="copy-btn" onclick="copyCommand('/screen')">Kopiuj</button>
           </div>
           <div class="command-desc">
             Pobiera bezstratną klatkę ze streamu w formacie PNG.
@@ -467,7 +550,7 @@
         <div class="command-row">
           <div class="command-left">
             <span class="command-name">/gif</span>
-            <button class="copy-btn" onclick="copyCommand('/gif', event)">Kopiuj</button>
+            <button class="copy-btn" onclick="copyCommand('/gif')">Kopiuj</button>
           </div>
           <div class="command-desc">
             Tworzy wyostrzoną animację GIF z ostatnich sekund transmisji.
@@ -477,7 +560,7 @@
         <div class="command-row">
           <div class="command-left">
             <span class="command-name">/montaz_panel_ustaw</span>
-            <button class="copy-btn" onclick="copyCommand('/montaz_panel_ustaw', event)">Kopiuj</button>
+            <button class="copy-btn" onclick="copyCommand('/montaz_panel_ustaw')">Kopiuj</button>
           </div>
           <div class="command-desc">
             Konfiguruje stałe Studio Montażu na wskazanym kanale tekstowym.
@@ -487,7 +570,7 @@
         <div class="command-row">
           <div class="command-left">
             <span class="command-name">/montaz_polacz</span>
-            <button class="copy-btn" onclick="copyCommand('/montaz_polacz', event)">Kopiuj</button>
+            <button class="copy-btn" onclick="copyCommand('/montaz_polacz')">Kopiuj</button>
           </div>
           <div class="command-desc">
             Skleja od 2 do 10 klipów MP4 w jedną płynną kompilację wysyłaną na #kompilacje.
@@ -497,12 +580,29 @@
         <div class="command-row">
           <div class="command-left">
             <span class="command-name">/top</span>
-            <button class="copy-btn" onclick="copyCommand('/top', event)">Kopiuj</button>
+            <button class="copy-btn" onclick="copyCommand('/top')">Kopiuj</button>
           </div>
           <div class="command-desc">
             Wyświetla ranking Hall of Fame najbardziej aktywnych twórców serwera.
             <small>Dostępne dla wszystkich użytkowników.</small>
           </div>
+        </div>
+      </div>
+
+      <!-- SEKCJA FAQ -->
+      <h2 class="section-title">Najczęściej zadawane <span>Pytania</span></h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">Jak dodać bota ZIEMIA 2.0 na swój serwer?</div>
+          <div class="faq-answer">Skorzystaj z przycisku „Dołącz do Discorda” powyżej, aby wejść na naszą społeczność, gdzie znajdziesz pełne instrukcje oraz oficjalne linki zaproszeniowe do bota.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Gdzie lądują materiały wycięte przez komendy?</div>
+          <div class="faq-answer">Wszystkie wycięte shoty, screeny PNG oraz animowane gify trafiają bezpośrednio na dedykowany kanał tekstowy na Twoim serwerze Discord skonfigurowany pod bota.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Czy bot wymaga specjalnych uprawnień?</div>
+          <div class="faq-answer">Tak, do prawidłowego monitorowania i wysyłania plików multimedialnych bot potrzebuje uprawnień do wysyłania wiadomości, załączania plików oraz zarządzania kanałami w celach konfiguracyjnych.</div>
         </div>
       </div>
     </main>
@@ -513,22 +613,32 @@
     </footer>
   </div>
 
+  <!-- TOAST NOTIFICATION ELEMENT -->
+  <div id="toast"><span>✓</span> Skopiowano komendę do schowka!</div>
+
   <script>
-    // Poprawiona funkcja kopiująca komendę do schowka
-    function copyCommand(text, event) {
+    // Obsługa akordeonu FAQ
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentNode;
+        item.classList.toggle('active');
+      });
+    });
+
+    // Nowoczesna funkcja kopiowania z powiadomieniem Toast
+    function copyCommand(text) {
       navigator.clipboard.writeText(text).then(() => {
-        const btn = event.target;
-        const originalText = btn.innerText;
-        btn.innerText = "Skopiowano!";
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
         setTimeout(() => {
-          btn.innerText = originalText;
-        }, 1500);
+          toast.classList.remove('show');
+        }, 2000);
       });
     }
 
-    // Pobieranie statystyk z bota na Railway
+    // Pobieranie statystyk z bota na Railway (z automatycznym odświeżaniem co 30 sekund)
     async function fetchBotStats() {
-      const API_URL = ""; 
+      const API_URL = ""; // Tutaj wkleisz swój publiczny endpoint z Railway np. 'https://twoj-bot.up.railway.app/api/stats'
 
       if (!API_URL) {
         document.getElementById('stat-shots').innerText = "142";
@@ -551,6 +661,8 @@
     }
 
     fetchBotStats();
+    // Odświeżaj statystyki co 30 sekund w tle
+    setInterval(fetchBotStats, 30000);
   </script>
 
 </body>
