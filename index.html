@@ -266,6 +266,7 @@
       font-size: 0.95rem;
     }
 
+    /* POPRAWIONA TABELA KOMEND */
     .commands-table {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -276,7 +277,7 @@
 
     .command-row {
       display: grid;
-      grid-template-columns: 260px 1fr;
+      grid-template-columns: 310px 1fr; /* Zwiększona szerokość lewej kolumny dla długich komend */
       padding: 1.2rem 1.5rem;
       border-bottom: 1px solid var(--card-border);
       align-items: center;
@@ -290,30 +291,33 @@
     .command-left {
       display: flex;
       align-items: center;
-      gap: 0.8rem;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      background: var(--code-bg);
+      padding: 0.4rem 0.7rem;
+      border-radius: 6px;
+      border: 1px solid var(--card-border);
     }
 
     .command-name {
       font-family: 'JetBrains Mono', monospace;
       color: var(--green);
       font-weight: 600;
-      background: var(--code-bg);
-      padding: 0.4rem 0.7rem;
-      border-radius: 6px;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      word-break: break-all;
     }
 
     .copy-btn {
       background: rgba(83, 252, 24, 0.1);
       border: 1px solid var(--green);
       color: var(--green);
-      padding: 0.3rem 0.6rem;
+      padding: 0.25rem 0.6rem;
       font-size: 0.75rem;
       border-radius: 4px;
       cursor: pointer;
       transition: all 0.2s;
       font-family: 'Space Grotesk', sans-serif;
+      white-space: nowrap;
+      margin-left: 0.5rem;
     }
 
     .copy-btn:hover {
@@ -332,10 +336,10 @@
       margin-top: 0.25rem;
     }
 
-    @media (max-width: 650px) {
+    @media (max-width: 768px) {
       .command-row {
         grid-template-columns: 1fr;
-        gap: 0.5rem;
+        gap: 0.8rem;
       }
     }
 
@@ -443,7 +447,7 @@
         <div class="command-row">
           <div class="command-left">
             <span class="command-name">/shot</span>
-            <button class="copy-btn" onclick="copyCommand('/shot')">Kopiuj</button>
+            <button class="copy-btn" onclick="copyCommand('/shot', event)">Kopiuj</button>
           </div>
           <div class="command-desc">
             Wycina wideo wstecz od momentu wywołania polecenia.
@@ -453,7 +457,7 @@
         <div class="command-row">
           <div class="command-left">
             <span class="command-name">/screen</span>
-            <button class="copy-btn" onclick="copyCommand('/screen')">Kopiuj</button>
+            <button class="copy-btn" onclick="copyCommand('/screen', event)">Kopiuj</button>
           </div>
           <div class="command-desc">
             Pobiera bezstratną klatkę ze streamu w formacie PNG.
@@ -463,7 +467,7 @@
         <div class="command-row">
           <div class="command-left">
             <span class="command-name">/gif</span>
-            <button class="copy-btn" onclick="copyCommand('/gif')">Kopiuj</button>
+            <button class="copy-btn" onclick="copyCommand('/gif', event)">Kopiuj</button>
           </div>
           <div class="command-desc">
             Tworzy wyostrzoną animację GIF z ostatnich sekund transmisji.
@@ -473,7 +477,7 @@
         <div class="command-row">
           <div class="command-left">
             <span class="command-name">/montaz_panel_ustaw</span>
-            <button class="copy-btn" onclick="copyCommand('/montaz_panel_ustaw')">Kopiuj</button>
+            <button class="copy-btn" onclick="copyCommand('/montaz_panel_ustaw', event)">Kopiuj</button>
           </div>
           <div class="command-desc">
             Konfiguruje stałe Studio Montażu na wskazanym kanale tekstowym.
@@ -483,7 +487,7 @@
         <div class="command-row">
           <div class="command-left">
             <span class="command-name">/montaz_polacz</span>
-            <button class="copy-btn" onclick="copyCommand('/montaz_polacz')">Kopiuj</button>
+            <button class="copy-btn" onclick="copyCommand('/montaz_polacz', event)">Kopiuj</button>
           </div>
           <div class="command-desc">
             Skleja od 2 do 10 klipów MP4 w jedną płynną kompilację wysyłaną na #kompilacje.
@@ -493,7 +497,7 @@
         <div class="command-row">
           <div class="command-left">
             <span class="command-name">/top</span>
-            <button class="copy-btn" onclick="copyCommand('/top')">Kopiuj</button>
+            <button class="copy-btn" onclick="copyCommand('/top', event)">Kopiuj</button>
           </div>
           <div class="command-desc">
             Wyświetla ranking Hall of Fame najbardziej aktywnych twórców serwera.
@@ -510,19 +514,21 @@
   </div>
 
   <script>
-    // Funkcja kopiująca komendę do schowka
-    function copyCommand(text) {
+    // Poprawiona funkcja kopiująca komendę do schowka
+    function copyCommand(text, event) {
       navigator.clipboard.writeText(text).then(() => {
-        event.target.innerText = "Skopiowano!";
+        const btn = event.target;
+        const originalText = btn.innerText;
+        btn.innerText = "Skopiowano!";
         setTimeout(() => {
-          event.target.innerText = "Kopiuj";
+          btn.innerText = originalText;
         }, 1500);
       });
     }
 
     // Pobieranie statystyk z bota na Railway
     async function fetchBotStats() {
-      const API_URL = ""; // Tutaj wstawisz adres swojego API z Railway w przyszłości
+      const API_URL = ""; 
 
       if (!API_URL) {
         document.getElementById('stat-shots').innerText = "142";
