@@ -52,6 +52,18 @@
       filter: blur(40px);
     }
 
+    .logo-container {
+      margin-bottom: 1.5rem;
+    }
+
+    .site-logo {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 15px var(--green-glow));
+      border-radius: 12px;
+    }
+
     .badge {
       display: inline-block;
       padding: 0.35rem 0.9rem;
@@ -201,6 +213,9 @@
 <body>
 
   <header>
+    <div class="logo-container">
+      <img src="logo.png" alt="ZIEMIA 2.0 Logo" class="site-logo">
+    </div>
     <div class="badge">ZIEMIA 2.0 • Oficjalne Narzędzie</div>
     <h1>Twój Serwer. <span>Kick.com</span> na Żywo.</h1>
     <p class="hero-desc">Autonomiczny bot Discord monitorujący transmisje na żywo, wycinający dynamiczne shoty w jakości studyjnej oraz generujący bezstratne multimedia.</p>
