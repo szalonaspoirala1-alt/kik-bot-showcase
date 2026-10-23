@@ -45,11 +45,11 @@
       top: -100px;
       left: 50%;
       transform: translateX(-50%);
-      width: 600px;
-      height: 350px;
+      width: 700px;
+      height: 400px;
       background: radial-gradient(circle, var(--green-glow) 0%, transparent 70%);
       z-index: -1;
-      filter: blur(50px);
+      filter: blur(60px);
     }
 
     .logo-container {
@@ -57,11 +57,13 @@
     }
 
     .site-logo {
-      width: 320px;
-      height: 320px;
+      width: 640px;
+      height: 640px;
+      max-width: 100%;
+      height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 0 30px var(--green-glow));
-      border-radius: 24px;
+      filter: drop-shadow(0 0 40px var(--green-glow));
+      border-radius: 32px;
     }
 
     .badge {
@@ -379,13 +381,10 @@
   </footer>
 
   <script>
-    // Skrypt pobierający statystyki z bota na Railway (gdy podasz adres API)
     async function fetchBotStats() {
-      // Tutaj w przyszłości podmienisz URL na swój publiczny adres z Railway np. 'https://twoj-bot.up.railway.app/api/stats'
       const API_URL = ""; 
 
       if (!API_URL) {
-        // Symulacja danych domyślnych na czas testów wizualnych
         document.getElementById('stat-shots').innerText = "142";
         document.getElementById('stat-screens').innerText = "89";
         document.getElementById('stat-gifs').innerText = "37";
@@ -405,7 +404,6 @@
       }
     }
 
-    // Uruchomienie po załadowaniu strony
     fetchBotStats();
   </script>
 
