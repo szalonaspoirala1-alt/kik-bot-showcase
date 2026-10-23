@@ -616,7 +616,7 @@
   <!-- TOAST NOTIFICATION ELEMENT -->
   <div id="toast"><span>✓</span> Skopiowano komendę do schowka!</div>
 
-  <script>
+ <script>
     // Obsługa akordeonu FAQ
     document.querySelectorAll('.faq-question').forEach(question => {
       question.addEventListener('click', () => {
@@ -625,7 +625,7 @@
       });
     });
 
-    // Nowoczesna funkcja kopiowania z powiadomieniem Toast
+    // Funkcja kopiowania z powiadomieniem Toast
     function copyCommand(text) {
       navigator.clipboard.writeText(text).then(() => {
         const toast = document.getElementById('toast');
@@ -636,32 +636,43 @@
       });
     }
 
-    // Pobieranie statystyk z bota na Railway (z automatycznym odświeżaniem co 30 sekund)
-    async function fetchBotStats() {
-      const API_URL = ""; // Tutaj wkleisz swój publiczny endpoint z Railway np. 'https://twoj-bot.up.railway.app/api/stats'
+    // Twój aktywny link z Railway:
+    const API_URL = "https://kik-bot-production-4a45.up.railway.app/api/stats";
 
-      if (!API_URL) {
-        document.getElementById('stat-shots').innerText = "142";
-        document.getElementById('stat-screens').innerText = "89";
-        document.getElementById('stat-gifs').innerText = "37";
-        document.getElementById('stat-compilations').innerText = "12";
-        return;
-      }
+    async function fetchBotStats() {
+      const statusText = document.querySelector('.bot-status span:last-child');
+      const statusDot = document.querySelector('.status-dot');
 
       try {
         const response = await fetch(API_URL);
+        if (!response.ok) throw new Error("Błąd sieci: " + response.status);
         const data = await response.json();
+
+        // Podmiana danych z bota
         document.getElementById('stat-shots').innerText = data.shots || 0;
         document.getElementById('stat-screens').innerText = data.screens || 0;
         document.getElementById('stat-gifs').innerText = data.gifs || 0;
         document.getElementById('stat-compilations').innerText = data.compilations || 0;
+
+        // Ustawienie statusu Online
+        if (statusText && statusDot) {
+          statusText.innerText = "Bot Online • API Railway";
+          statusDot.style.backgroundColor = "var(--green)";
+          statusDot.style.boxShadow = "0 0 8px var(--green)";
+        }
       } catch (error) {
-        console.error("Błąd pobierania statystyk bota:", error);
+        console.error("Błąd pobierania danych z API bota:", error);
+        // Ustawienie statusu w razie błędu połączenia
+        if (statusText && statusDot) {
+          statusText.innerText = "Bot Offline • Łączenie...";
+          statusDot.style.backgroundColor = "#ff4444";
+          statusDot.style.boxShadow = "0 0 8px #ff4444";
+        }
       }
     }
 
     fetchBotStats();
-    // Odświeżaj statystyki co 30 sekund w tle
+    // Odświeżanie statystyk co 30 sekund w tle
     setInterval(fetchBotStats, 30000);
   </script>
 
