@@ -15,7 +15,7 @@
       --green: #53fc18;
       --green-glow: rgba(83, 252, 24, 0.25);
       --text: #e1e7e8;
-      --muted: #c0cdd0; /* Zwiększona jasność opisu dla idealnej czytelności */
+      --muted: #c0cdd0;
       --code-bg: #060808;
     }
 
@@ -91,9 +91,43 @@
 
     p.hero-desc {
       max-width: 650px;
-      margin: 0 auto 2.5rem;
+      margin: 0 auto 2rem;
       color: var(--muted);
       font-size: 1.15rem;
+    }
+
+    /* PRZYCISK DISCORD */
+    .discord-btn-container {
+      margin-bottom: 3rem;
+    }
+
+    .discord-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 2rem;
+      background: #5865F2;
+      color: #ffffff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 20px rgba(88, 101, 242, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .discord-btn:hover {
+      background: #4752c4;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(88, 101, 242, 0.6);
+    }
+
+    .discord-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
     }
 
     /* STATYSTYKI LIVE DASHBOARD */
@@ -253,6 +287,10 @@
       color: #8b9799;
       font-size: 0.9rem;
     }
+
+    footer p {
+      margin-bottom: 0.4rem;
+    }
   </style>
 </head>
 <body>
@@ -264,6 +302,16 @@
     <div class="badge">ZIEMIA 2.0 • Oficjalne Narzędzie</div>
     <h1>Twój serwer. Kick.com na żywo.</h1>
     <p class="hero-desc">Autonomiczny bot Discord monitorujący transmisje na żywo, wycinający dynamiczne shoty w jakości studyjnej oraz generujący bezstratne multimedia.</p>
+
+    <!-- PRZYCISK DISCORD -->
+    <div class="discord-btn-container">
+      <a href="https://discord.gg/BZPpkTuMm" target="_blank" class="discord-btn">
+        <svg viewBox="0 0 127.14 96.36">
+          <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.79,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.68,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.81,11.1,105.25,105.25,0,0,0,32.25-16.15c2.63-27.29-4.53-51.19-19.45-72.15ZM42.45,65.69C36.18,65.69,31,60,31,53s5.18-12.72,11.45-12.72S53.9,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5.18-12.72,11.45-12.72S96.14,46,96.12,53,91,65.69,84.69,65.69Z"/>
+        </svg>
+        Dołącz do Discorda
+      </a>
+    </div>
 
     <!-- LIVE STATS DASHBOARD -->
     <div class="stats-dashboard">
@@ -374,7 +422,8 @@
   </main>
 
   <footer>
-    <p>ZIEMIA 2.0 • System Monitorowania i Montażu Kick.com • Wygenerowano automatycznie</p>
+    <p>Strona stworzona przez Zapson93</p>
+    <p>© 2026 ZIEMIA 2.0. Wszelkie prawa zastrzeżone.</p>
   </footer>
 
   <script>
