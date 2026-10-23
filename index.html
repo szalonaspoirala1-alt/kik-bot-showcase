@@ -34,18 +34,20 @@
     }
 
     header {
-      padding: 4rem 1.5rem 2rem;
+      padding: 3rem 1.5rem 2rem;
       text-align: center;
       position: relative;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
     header::before {
       content: "";
       position: absolute;
-      top: -100px;
+      top: -50px;
       left: 50%;
       transform: translateX(-50%);
-      width: 700px;
+      width: 800px;
       height: 400px;
       background: radial-gradient(circle, var(--green-glow) 0%, transparent 70%);
       z-index: -1;
@@ -54,16 +56,15 @@
 
     .logo-container {
       margin-bottom: 2rem;
+      width: 100%;
     }
 
     .site-logo {
-      width: 640px;
-      height: 640px;
-      max-width: 100%;
+      width: 100%;
       height: auto;
       object-fit: contain;
       filter: drop-shadow(0 0 40px var(--green-glow));
-      border-radius: 32px;
+      border-radius: 24px;
     }
 
     .badge {
@@ -225,7 +226,6 @@
       color: var(--text);
     }
 
-    /* Poprawiona jasność tekstów w kafelkach */
     .card p {
       color: #c0cdd0;
       font-size: 0.95rem;
