@@ -33,12 +33,16 @@
       overflow-x: hidden;
     }
 
+    .wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1.5rem 5rem;
+    }
+
     header {
-      padding: 3rem 1.5rem 2rem;
+      padding: 3rem 0 2rem;
       text-align: center;
       position: relative;
-      max-width: 900px;
-      margin: 0 auto;
     }
 
     header::before {
@@ -47,7 +51,7 @@
       top: -50px;
       left: 50%;
       transform: translateX(-50%);
-      width: 800px;
+      width: 700px;
       height: 400px;
       background: radial-gradient(circle, var(--green-glow) 0%, transparent 70%);
       z-index: -1;
@@ -92,14 +96,18 @@
 
     p.hero-desc {
       max-width: 650px;
-      margin: 0 auto 2rem;
+      margin: 0 auto 1.8rem;
       color: var(--muted);
       font-size: 1.15rem;
     }
 
-    /* PRZYCISK DISCORD */
-    .discord-btn-container {
+    /* PRZYCISK DISCORD I STATUS */
+    .discord-section {
       margin-bottom: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
     }
 
     .discord-btn {
@@ -131,13 +139,39 @@
       fill: currentColor;
     }
 
+    .bot-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: var(--card-bg);
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid var(--card-border);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--green);
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px var(--green); }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+
     /* STATYSTYKI LIVE DASHBOARD */
     .stats-dashboard {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1rem;
-      max-width: 900px;
-      margin: 0 auto 4rem;
+      margin-bottom: 4rem;
     }
 
     .stat-card {
@@ -148,6 +182,13 @@
       text-align: center;
       position: relative;
       overflow: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .stat-card:hover {
+      border-color: var(--green);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px -5px var(--green-glow);
     }
 
     .stat-card::after {
@@ -177,12 +218,6 @@
       letter-spacing: 0.05em;
     }
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 1.5rem 5rem;
-    }
-
     .section-title {
       font-size: 1.8rem;
       margin-bottom: 2rem;
@@ -195,7 +230,7 @@
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
       margin-bottom: 5rem;
     }
@@ -227,7 +262,7 @@
     }
 
     .card p {
-      color: #c0cdd0;
+      color: var(--muted);
       font-size: 0.95rem;
     }
 
@@ -241,7 +276,7 @@
 
     .command-row {
       display: grid;
-      grid-template-columns: 240px 1fr;
+      grid-template-columns: 260px 1fr;
       padding: 1.2rem 1.5rem;
       border-bottom: 1px solid var(--card-border);
       align-items: center;
@@ -252,6 +287,13 @@
       border-bottom: none;
     }
 
+    .command-left {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
     .command-name {
       font-family: 'JetBrains Mono', monospace;
       color: var(--green);
@@ -259,9 +301,24 @@
       background: var(--code-bg);
       padding: 0.4rem 0.7rem;
       border-radius: 6px;
-      display: inline-block;
-      width: fit-content;
       font-size: 0.95rem;
+    }
+
+    .copy-btn {
+      background: rgba(83, 252, 24, 0.1);
+      border: 1px solid var(--green);
+      color: var(--green);
+      padding: 0.3rem 0.6rem;
+      font-size: 0.75rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .copy-btn:hover {
+      background: var(--green);
+      color: var(--bg);
     }
 
     .command-desc {
@@ -271,7 +328,7 @@
 
     .command-desc small {
       display: block;
-      color: #c0cdd0;
+      color: var(--muted);
       margin-top: 0.25rem;
     }
 
@@ -286,7 +343,7 @@
       text-align: center;
       padding: 2.5rem 1.5rem;
       border-top: 1px solid var(--card-border);
-      color: #c0cdd0;
+      color: var(--muted);
       font-size: 0.9rem;
     }
 
@@ -297,140 +354,175 @@
 </head>
 <body>
 
-  <header>
-    <div class="logo-container">
-      <img src="logo.png" alt="ZIEMIA 2.0 Logo" class="site-logo">
-    </div>
-    <div class="badge">ZIEMIA 2.0 • Oficjalne Narzędzie</div>
-    <h1>Twój serwer. Kick.com na żywo.</h1>
-    <p class="hero-desc">Autonomiczny bot Discord monitorujący transmisje na żywo, wycinający dynamiczne shoty w jakości studyjnej oraz generujący bezstratne multimedia.</p>
+  <div class="wrapper">
+    <header>
+      <div class="logo-container">
+        <img src="logo.png" alt="ZIEMIA 2.0 Logo" class="site-logo">
+      </div>
+      <div class="badge">ZIEMIA 2.0 • Oficjalne Narzędzie</div>
+      <h1>Twój serwer. Kick.com na żywo.</h1>
+      <p class="hero-desc">Autonomiczny bot Discord monitorujący transmisje na żywo, wycinający dynamiczne shoty w jakości studyjnej oraz generujący bezstratne multimedia.</p>
 
-    <!-- PRZYCISK DISCORD -->
-    <div class="discord-btn-container">
-      <a href="https://discord.gg/BZPpkTuMm" target="_blank" class="discord-btn">
-        <svg viewBox="0 0 127.14 96.36">
-          <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.79,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.68,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.81,11.1,105.25,105.25,0,0,0,32.25-16.15c2.63-27.29-4.53-51.19-19.45-72.15ZM42.45,65.69C36.18,65.69,31,60,31,53s5.18-12.72,11.45-12.72S53.9,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5.18-12.72,11.45-12.72S96.14,46,96.12,53,91,65.69,84.69,65.69Z"/>
-        </svg>
-        Dołącz do Discorda
-      </a>
-    </div>
-
-    <!-- LIVE STATS DASHBOARD -->
-    <div class="stats-dashboard">
-      <div class="stat-card">
-        <div class="stat-number" id="stat-shots">--</div>
-        <div class="stat-label">🎬 Wycięte Shoty</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number" id="stat-screens">--</div>
-        <div class="stat-label">📸 Zrzuty Screen HD</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number" id="stat-gifs">--</div>
-        <div class="stat-label">🎞️ Animowane GIF-y</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number" id="stat-compilations">--</div>
-        <div class="stat-label">✂️ Kompilacje Montażu</div>
-      </div>
-    </div>
-  </header>
-
-  <main class="container">
-    <h2 class="section-title">Co potrafi <span>Kik-bot</span>?</h2>
-    <div class="features-grid">
-      <div class="card">
-        <div class="card-icon">🎬</div>
-        <h3>Shoty Wideo HD</h3>
-        <p>Błyskawiczne wycinanie akcji wstecz (5–60s) z bezpośredniego strumienia HLS w jakości 720p/1080p z profilem CRF 16 i dźwiękiem 256 kbps.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">📸</div>
-        <h3>Bezstratne Screeny PNG</h3>
-        <p>Precyzyjne zrzuty klatek w natywnej rozdzielczości z automatycznym znakowaniem brandingowym ZIEMIA 2.0 w lewym górnym rogu.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">🎞️</div>
-        <h3>Animowane GIF-y</h3>
-        <p>Płynne animacje 15 FPS generowane przy użyciu pełnej, zoptymalizowanej 256-kolorowej palety barw bez kompresyjnej pikselozy.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">✂️</div>
-        <h3>Wizualne Studio Montażu</h3>
-        <p>Interaktywny panel na Discordzie pozwalający przeglądać katalog shotów, docinać materiały oraz łączyć do 10 klipów w jednolitą kompilację.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">📡</div>
-        <h3>Panel LIVE & Alerty</h3>
-        <p>Stały dashboard z dynamicznym podglądem streamerów, powiadomienia o starcie transmisji oraz automatyczne ignorowanie streamów spania.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">🏆</div>
-        <h3>Hall of Fame (/top)</h3>
-        <p>Globalny ranking twórców serwera zliczający punkty za shoty, screeny i animacje, weryfikujący historyczną aktywność społeczności.</p>
-      </div>
-    </div>
-
-    <h2 class="section-title">Centrum Dowodzenia • <span>Komendy</span></h2>
-    <div class="commands-table">
-      <div class="command-row">
-        <span class="command-name">/shot</span>
-        <div class="command-desc">
-          Wycina wideo wstecz od momentu wywołania polecenia.
-          <small>Parametry: kanał, sekundy (5–60s), jakość (480p/720p/1080p), opcjonalny opis.</small>
+      <!-- PRZYCISK DISCORD I STATUS LIVE -->
+      <div class="discord-section">
+        <a href="https://discord.gg/BZPpkTuMm" target="_blank" class="discord-btn">
+          <svg viewBox="0 0 127.14 96.36">
+            <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.79,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.68,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.81,11.1,105.25,105.25,0,0,0,32.25-16.15c2.63-27.29-4.53-51.19-19.45-72.15ZM42.45,65.69C36.18,65.69,31,60,31,53s5.18-12.72,11.45-12.72S53.9,46,53.88,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5.18-12.72,11.45-12.72S96.14,46,96.12,53,91,65.69,84.69,65.69Z"/>
+          </svg>
+          Dołącz do Discorda
+        </a>
+        <div class="bot-status">
+          <span class="status-dot"></span>
+          <span>Bot Online • API Railway</span>
         </div>
       </div>
-      <div class="command-row">
-        <span class="command-name">/screen</span>
-        <div class="command-desc">
-          Pobiera bezstratną klatkę ze streamu w formacie PNG.
-          <small>Parametry: kanał streamera z listy autouzupełniania.</small>
-        </div>
-      </div>
-      <div class="command-row">
-        <span class="command-name">/gif</span>
-        <div class="command-desc">
-          Tworzy wyostrzoną animację GIF z ostatnich sekund transmisji.
-          <small>Parametry: kanał, długość (1–10s).</small>
-        </div>
-      </div>
-      <div class="command-row">
-        <span class="command-name">/montaz_panel_ustaw</span>
-        <div class="command-desc">
-          Konfiguruje stałe Studio Montażu na wskazanym kanale tekstowym.
-          <small>Uprawnienia: Tylko Administrator serwera.</small>
-        </div>
-      </div>
-      <div class="command-row">
-        <span class="command-name">/montaz_polacz</span>
-        <div class="command-desc">
-          Skleja od 2 do 10 klipów MP4 w jedną płynną kompilację wysyłaną na #kompilacje.
-          <small>Parametry: bezpośrednie linki do plików lub wiadomości Discorda.</small>
-        </div>
-      </div>
-      <div class="command-row">
-        <span class="command-name">/top</span>
-        <div class="command-desc">
-          Wyświetla ranking Hall of Fame najbardziej aktywnych twórców serwera.
-          <small>Dostępne dla wszystkich użytkowników.</small>
-        </div>
-      </div>
-    </div>
-  </main>
 
-  <footer>
-    <p>Strona stworzona przez Zapson93</p>
-    <p>© 2026 ZIEMIA 2.0. Wszelkie prawa zastrzeżone.</p>
-  </footer>
+      <!-- LIVE STATS DASHBOARD -->
+      <div class="stats-dashboard">
+        <div class="stat-card">
+          <div class="stat-number" id="stat-shots">--</div>
+          <div class="stat-label">🎬 Wycięte Shoty</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-screens">--</div>
+          <div class="stat-label">📸 Zrzuty Screen HD</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-gifs">--</div>
+          <div class="stat-label">🎞️ Animowane GIF-y</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="stat-compilations">--</div>
+          <div class="stat-label">✂️ Kompilacje Montażu</div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <h2 class="section-title">Co potrafi <span>Kik-bot</span>?</h2>
+      <div class="features-grid">
+        <div class="card">
+          <div class="card-icon">🎬</div>
+          <h3>Shoty Wideo HD</h3>
+          <p>Błyskawiczne wycinanie akcji wstecz (5–60s) z bezpośredniego strumienia HLS w jakości 720p/1080p z profilem CRF 16 i dźwiękiem 256 kbps.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📸</div>
+          <h3>Bezstratne Screeny PNG</h3>
+          <p>Precyzyjne zrzuty klatek w natywnej rozdzielczości z automatycznym znakowaniem brandingowym ZIEMIA 2.0 w lewym górnym rogu.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🎞️</div>
+          <h3>Animowane GIF-y</h3>
+          <p>Płynne animacje 15 FPS generowane przy użyciu pełnej, zoptymalizowanej 256-kolorowej palety barw bez kompresyjnej pikselozy.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">✂️</div>
+          <h3>Wizualne Studio Montażu</h3>
+          <p>Interaktywny panel na Discordzie pozwalający przeglądać katalog shotów, docinać materiały oraz łączyć do 10 klipów w jednolitą kompilację.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">📡</div>
+          <h3>Panel LIVE & Alerty</h3>
+          <p>Stały dashboard z dynamicznym podglądem streamerów, powiadomienia o starcie transmisji oraz automatyczne ignorowanie streamów spania.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🏆</div>
+          <h3>Hall of Fame (/top)</h3>
+          <p>Globalny ranking twórców serwera zliczający punkty za shoty, screeny i animacje, weryfikujący historyczną aktywność społeczności.</p>
+        </div>
+      </div>
+
+      <h2 class="section-title">Centrum Dowodzenia • <span>Komendy</span></h2>
+      <div class="commands-table">
+        <div class="command-row">
+          <div class="command-left">
+            <span class="command-name">/shot</span>
+            <button class="copy-btn" onclick="copyCommand('/shot')">Kopiuj</button>
+          </div>
+          <div class="command-desc">
+            Wycina wideo wstecz od momentu wywołania polecenia.
+            <small>Parametry: kanał, sekundy (5–60s), jakość (480p/720p/1080p), opcjonalny opis.</small>
+          </div>
+        </div>
+        <div class="command-row">
+          <div class="command-left">
+            <span class="command-name">/screen</span>
+            <button class="copy-btn" onclick="copyCommand('/screen')">Kopiuj</button>
+          </div>
+          <div class="command-desc">
+            Pobiera bezstratną klatkę ze streamu w formacie PNG.
+            <small>Parametry: kanał streamera z listy autouzupełniania.</small>
+          </div>
+        </div>
+        <div class="command-row">
+          <div class="command-left">
+            <span class="command-name">/gif</span>
+            <button class="copy-btn" onclick="copyCommand('/gif')">Kopiuj</button>
+          </div>
+          <div class="command-desc">
+            Tworzy wyostrzoną animację GIF z ostatnich sekund transmisji.
+            <small>Parametry: kanał, długość (1–10s).</small>
+          </div>
+        </div>
+        <div class="command-row">
+          <div class="command-left">
+            <span class="command-name">/montaz_panel_ustaw</span>
+            <button class="copy-btn" onclick="copyCommand('/montaz_panel_ustaw')">Kopiuj</button>
+          </div>
+          <div class="command-desc">
+            Konfiguruje stałe Studio Montażu na wskazanym kanale tekstowym.
+            <small>Uprawnienia: Tylko Administrator serwera.</small>
+          </div>
+        </div>
+        <div class="command-row">
+          <div class="command-left">
+            <span class="command-name">/montaz_polacz</span>
+            <button class="copy-btn" onclick="copyCommand('/montaz_polacz')">Kopiuj</button>
+          </div>
+          <div class="command-desc">
+            Skleja od 2 do 10 klipów MP4 w jedną płynną kompilację wysyłaną na #kompilacje.
+            <small>Parametry: bezpośrednie linki do plików lub wiadomości Discorda.</small>
+          </div>
+        </div>
+        <div class="command-row">
+          <div class="command-left">
+            <span class="command-name">/top</span>
+            <button class="copy-btn" onclick="copyCommand('/top')">Kopiuj</button>
+          </div>
+          <div class="command-desc">
+            Wyświetla ranking Hall of Fame najbardziej aktywnych twórców serwera.
+            <small>Dostępne dla wszystkich użytkowników.</small>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>Strona stworzona przez Zapson93</p>
+      <p>© 2026 ZIEMIA 2.0. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+  </div>
 
   <script>
+    // Funkcja kopiująca komendę do schowka
+    function copyCommand(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        event.target.innerText = "Skopiowano!";
+        setTimeout(() => {
+          event.target.innerText = "Kopiuj";
+        }, 1500);
+      });
+    }
+
+    // Pobieranie statystyk z bota na Railway
     async function fetchBotStats() {
-      const API_URL = ""; 
+      const API_URL = ""; // Tutaj wstawisz adres swojego API z Railway w przyszłości
 
       if (!API_URL) {
         document.getElementById('stat-shots').innerText = "142";
