@@ -34,7 +34,7 @@
     }
 
     header {
-      padding: 4rem 1.5rem 3rem;
+      padding: 4rem 1.5rem 2rem;
       text-align: center;
       position: relative;
     }
@@ -92,9 +92,55 @@
 
     p.hero-desc {
       max-width: 650px;
-      margin: 0 auto 2rem;
+      margin: 0 auto 2.5rem;
       color: var(--muted);
       font-size: 1.15rem;
+    }
+
+    /* STATYSTYKI LIVE DASHBOARD */
+    .stats-dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto 4rem;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--green);
+      opacity: 0.4;
+    }
+
+    .stat-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 0.2rem;
+      text-shadow: 0 0 15px var(--green-glow);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     .container {
@@ -219,6 +265,26 @@
     <div class="badge">ZIEMIA 2.0 • Oficjalne Narzędzie</div>
     <h1>Twój Serwer. <span>Kick.com</span> na Żywo.</h1>
     <p class="hero-desc">Autonomiczny bot Discord monitorujący transmisje na żywo, wycinający dynamiczne shoty w jakości studyjnej oraz generujący bezstratne multimedia.</p>
+
+    <!-- LIVE STATS DASHBOARD -->
+    <div class="stats-dashboard">
+      <div class="stat-card">
+        <div class="stat-number" id="stat-shots">--</div>
+        <div class="stat-label">🎬 Wycięte Shoty</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="stat-screens">--</div>
+        <div class="stat-label">📸 Zrzuty Screen HD</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="stat-gifs">--</div>
+        <div class="stat-label">🎞️ Animowane GIF-y</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="stat-compilations">--</div>
+        <div class="stat-label">✂️ Kompilacje Montażu</div>
+      </div>
+    </div>
   </header>
 
   <main class="container">
@@ -311,6 +377,37 @@
   <footer>
     <p>ZIEMIA 2.0 • System Monitorowania i Montażu Kick.com • Wygenerowano automatycznie</p>
   </footer>
+
+  <script>
+    // Skrypt pobierający statystyki z bota na Railway (gdy podasz adres API)
+    async function fetchBotStats() {
+      // Tutaj w przyszłości podmienisz URL na swój publiczny adres z Railway np. 'https://twoj-bot.up.railway.app/api/stats'
+      const API_URL = ""; 
+
+      if (!API_URL) {
+        // Symulacja danych domyślnych na czas testów wizualnych
+        document.getElementById('stat-shots').innerText = "142";
+        document.getElementById('stat-screens').innerText = "89";
+        document.getElementById('stat-gifs').innerText = "37";
+        document.getElementById('stat-compilations').innerText = "12";
+        return;
+      }
+
+      try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        document.getElementById('stat-shots').innerText = data.shots || 0;
+        document.getElementById('stat-screens').innerText = data.screens || 0;
+        document.getElementById('stat-gifs').innerText = data.gifs || 0;
+        document.getElementById('stat-compilations').innerText = data.compilations || 0;
+      } catch (error) {
+        console.error("Błąd pobierania statystyk bota:", error);
+      }
+    }
+
+    // Uruchomienie po załadowaniu strony
+    fetchBotStats();
+  </script>
 
 </body>
 </html>
