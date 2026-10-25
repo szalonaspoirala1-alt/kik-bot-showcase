@@ -46,7 +46,7 @@
         }
 
         header h1 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             font-weight: 800;
             color: var(--accent-color);
             margin-bottom: 1rem;
@@ -83,7 +83,7 @@
             backdrop-filter: blur(10px);
         }
 
-        /* Styl zwijany (FAQ oraz Hall of Fame) */
+        /* Styl FAQ */
         details.faq-item {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -99,7 +99,7 @@
 
         details.faq-item summary {
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--text-main);
             display: flex;
@@ -214,7 +214,7 @@
     <div class="container">
         <!-- Nagłówek -->
         <header>
-            <h1>Serwer discord z zaawansowaną aplikacją strimerską.</h1>
+            <h1>Twój serwer. Kick.com na żywo.</h1>
             <a href="https://discord.gg/twoj-link" target="_blank" class="btn-discord">
                 Dołącz do Discorda
             </a>
@@ -240,12 +240,12 @@
             </div>
         </div>
 
-        <!-- Hall of Fame jako sekcja zwijana -->
-        <details class="faq-item">
-            <summary>
-                🏆 Hall of Fame • <span style="color: var(--accent-color); margin-left: 5px;">Top Twórcy</span>
-            </summary>
-            <div class="faq-answer" style="overflow-x: auto;">
+        <!-- Hall of Fame -->
+        <div class="card">
+            <h2 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                🏆 Hall of Fame • <span style="color: var(--accent-color);">Top Twórcy</span>
+            </h2>
+            <div style="overflow-x: auto;">
                 <table class="hof-table">
                     <thead>
                         <tr>
@@ -265,19 +265,19 @@
                     </tbody>
                 </table>
             </div>
-        </details>
+        </div>
 
-        <!-- Sekcja FAQ (Najczęściej zadawane pytania) -->
+        <!-- Sekcja FAQ -->
         <h2 style="font-size: 1.5rem; font-weight: 700; text-align: center; margin-bottom: 1.5rem;">
             Najczęściej zadawane <span style="color: var(--accent-color);">Pytania</span>
         </h2>
 
         <details class="faq-item">
             <summary class="faq-question">
-                Jak dołączyć do serwera?
+                Jak dodać bota ZIEMIA 2.0 na swój serwer?
             </summary>
             <div class="faq-answer">
-                Skorzystaj z przycisku „Dołącz do Discorda” aby dołączyć do naszej społeczności.
+                Skorzystaj z przycisku „Dołącz do Discorda” powyżej, aby wejść na naszą społeczność, gdzie znajdziesz pełne instrukcje oraz oficjalne linki zaproszeniowe do bota.
             </div>
         </details>
     </div>
