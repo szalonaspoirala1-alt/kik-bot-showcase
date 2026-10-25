@@ -3,158 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZIEMIA 2.0 • Panel Kick & Community</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>ZIEMIA 2.0 • Serwer Discord & Aplikacja Strimerska</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0d0f12;
-            --card-bg: rgba(20, 22, 25, 0.85);
-            --accent-color: #53fc18;
+            --bg-dark: #090a0c;
+            --card-bg: #121418;
+            --card-hover: #171a20;
+            --kick-green: #53fc18;
+            --kick-green-glow: rgba(83, 252, 24, 0.25);
             --text-main: #ffffff;
             --text-muted: #9ca3af;
-            --border-color: rgba(255, 255, 255, 0.08);
+            --border-subtle: rgba(255, 255, 255, 0.08);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
+            background-color: var(--bg-dark);
             color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            line-height: 1.6;
             overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% 0%, rgba(83, 252, 24, 0.05) 0%, transparent 50%);
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(83, 252, 24, 0.08) 0%, transparent 55%),
+                radial-gradient(circle at 85% 30%, rgba(83, 252, 24, 0.04) 0%, transparent 40%);
         }
 
-        .container {
-            max-width: 1000px;
+        /* Pasek nawigacji */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1150px;
             margin: 0 auto;
-            padding: 3rem 1.5rem;
-            width: 100%;
+            padding: 1.5rem 1.5rem;
         }
 
-        header {
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--kick-green);
+        }
+
+        /* Sekcja Hero */
+        .hero {
             text-align: center;
-            margin-bottom: 3rem;
+            max-width: 900px;
+            margin: 3.5rem auto 4rem;
+            padding: 0 1.5rem;
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-            letter-spacing: -0.025em;
-            text-shadow: 0 0 20px rgba(83, 252, 24, 0.2);
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(83, 252, 24, 0.1);
+            border: 1px solid rgba(83, 252, 24, 0.3);
+            color: var(--kick-green);
+            padding: 0.4rem 1rem;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.1rem, 4.8vw, 3.6rem);
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            color: var(--kick-green);
+            text-shadow: 0 0 35px var(--kick-green-glow);
+            margin-bottom: 1.25rem;
+        }
+
+        .hero p {
+            font-size: 1.12rem;
+            color: var(--text-muted);
+            max-width: 680px;
+            margin: 0 auto 2.2rem;
         }
 
         .btn-discord {
             display: inline-flex;
             align-items: center;
-            background-color: #5865F2;
-            color: #ffffff;
-            font-weight: 600;
-            padding: 0.8rem 1.8rem;
-            border-radius: 8px;
+            gap: 0.65rem;
+            background-color: var(--kick-green);
+            color: #050607;
+            font-weight: 800;
+            font-size: 1.05rem;
+            padding: 0.95rem 2.2rem;
+            border-radius: 10px;
             text-decoration: none;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 14px rgba(88, 101, 242, 0.3);
+            box-shadow: 0 0 25px var(--kick-green-glow);
         }
 
         .btn-discord:hover {
-            background-color: #4752c4;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.4);
+            box-shadow: 0 0 35px rgba(83, 252, 24, 0.45);
+            background-color: #64ff2e;
         }
 
-        /* Sekcje / Kafelki */
-        .card {
+        .container {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 0 1.5rem 4rem;
+        }
+
+        /* Liczniki Statystyk */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .stat-box {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 1.6rem 1.2rem;
+            text-align: center;
+            transition: border-color 0.2s ease, transform 0.2s ease;
         }
 
-        /* Styl FAQ */
-        details.faq-item {
+        .stat-box:hover {
+            border-color: rgba(83, 252, 24, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-size: 2.3rem;
+            font-weight: 900;
+            color: var(--kick-green);
+            line-height: 1.1;
+            margin-bottom: 0.4rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        /* Nagłówki sekcji */
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 3.5rem 0 1.8rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title span {
+            color: var(--kick-green);
+        }
+
+        /* Zwijane kafelki (zarówno dla Hall of Fame, jak i FAQ) */
+        details.expand-box {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.2rem 1.5rem;
-            margin-bottom: 1.5rem;
-            transition: border-color 0.2s ease;
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: border-color 0.25s ease;
         }
 
-        details.faq-item[open] {
-            border-color: rgba(83, 252, 24, 0.3);
+        details.expand-box[open] {
+            border-color: rgba(83, 252, 24, 0.35);
         }
 
-        details.faq-item summary {
-            cursor: pointer;
-            font-size: 1.1rem;
+        details.expand-box summary {
+            padding: 1.35rem 1.6rem;
+            font-size: 1.12rem;
             font-weight: 700;
-            color: var(--text-main);
+            color: #fff;
+            cursor: pointer;
+            list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            list-style: none;
+            user-select: none;
         }
 
-        details.faq-item summary::-webkit-details-marker {
+        details.expand-box summary::-webkit-details-marker {
             display: none;
         }
 
-        details.faq-item summary::after {
-            content: '+';
-            color: var(--accent-color);
-            font-size: 1.4rem;
-            font-weight: 600;
+        details.expand-box summary .icon-plus {
+            color: var(--kick-green);
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1;
             transition: transform 0.2s ease;
         }
 
-        details.faq-item[open] summary::after {
+        details.expand-box[open] summary .icon-plus {
             transform: rotate(45deg);
         }
 
-        .faq-answer {
-            margin-top: 1rem;
+        .expand-content {
+            padding: 0 1.6rem 1.5rem;
             color: var(--text-muted);
-            line-height: 1.6;
-            font-size: 0.95rem;
+            font-size: 0.96rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding-top: 1.2rem;
         }
 
-        /* Tabela Hall of Fame */
+        /* Tabela Hall of Fame z awatarami */
+        .table-wrap {
+            overflow-x: auto;
+        }
+
         .hof-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 1rem;
-        }
-
-        .hof-table th, .hof-table td {
-            padding: 0.85rem 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 0.95rem;
         }
 
         .hof-table th {
-            color: var(--accent-color);
-            font-weight: 600;
+            text-align: left;
+            padding: 0.85rem 1rem;
+            font-size: 0.78rem;
             text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-subtle);
         }
 
         .hof-table td {
-            color: var(--text-main);
+            padding: 0.9rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: #fff;
+            font-size: 0.95rem;
+            vertical-align: middle;
         }
 
         .hof-table tr:last-child td {
@@ -165,185 +267,218 @@
             background: rgba(255, 255, 255, 0.02);
         }
 
-        /* Statystyki globalne */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
+        .user-cell {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
         }
 
-        .stat-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.2rem;
-            text-align: center;
+        .user-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid rgba(83, 252, 24, 0.4);
+            background: #1e2229;
         }
 
-        .stat-card .value {
-            font-size: 1.8rem;
+        .score-pill {
+            display: inline-block;
+            background: rgba(83, 252, 24, 0.12);
+            color: var(--kick-green);
             font-weight: 800;
-            color: var(--accent-color);
-            margin-bottom: 0.3rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 8px;
+            border: 1px solid rgba(83, 252, 24, 0.25);
         }
 
-        .stat-card .label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Stopka */
         footer {
             text-align: center;
-            padding: 2rem 0;
+            padding: 2.5rem 1.5rem;
+            border-top: 1px solid var(--border-subtle);
             color: var(--text-muted);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border-color);
+            font-size: 0.88rem;
         }
 
         footer span {
-            color: var(--accent-color);
+            color: var(--kick-green);
+            font-weight: 700;
         }
     </style>
 </head>
 <body>
 
+    <nav>
+        <a href="#" class="logo">🌍 ZIEMIA <span>2.0</span></a>
+        <a href="https://discord.gg/ajz47uhA9" target="_blank" class="btn-discord" style="padding: 0.6rem 1.3rem; font-size: 0.9rem;">
+            Dołącz do Discorda
+        </a>
+    </nav>
+
+    <section class="hero">
+        <div class="badge">● SYSTEM AKTYWNY 24/7 • KICK.COM</div>
+        <h1>Serwer discord z zaawansowaną aplikacją strimerską.</h1>
+        <p>Automatyczne powiadomienia LIVE, wycinanie shotów w 1080p, zrzuty ekranu HD, animowane GIF-y oraz interaktywne Studio Montażu na żywo.</p>
+        <a href="https://discord.gg/ajz47uhA9" id="discord-btn-main" target="_blank" class="btn-discord">
+            Dołącz do Discorda
+        </a>
+    </section>
+
     <div class="container">
-        <!-- Nagłówek -->
-        <header>
-            <h1>Twój serwer. Kick.com na żywo.</h1>
-            <a href="https://discord.gg/twoj-link" target="_blank" class="btn-discord">
-                Dołącz do Discorda
-            </a>
-        </header>
-
-        <!-- Statystyki Globalne -->
-        <div class="stats-grid" id="stats-container">
-            <div class="stat-card">
-                <div class="value" id="stat-shots">-</div>
-                <div class="label">Wyciętych Shotów</div>
+        <!-- Liczniki na żywo -->
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-number" id="stat-shots">...</div>
+                <div class="stat-label">🎬 Wyciętych Shotów</div>
             </div>
-            <div class="stat-card">
-                <div class="value" id="stat-screens">-</div>
-                <div class="label">Zrzutów Ekranu</div>
+            <div class="stat-box">
+                <div class="stat-number" id="stat-screens">...</div>
+                <div class="stat-label">📸 Zrzutów Ekranu HD</div>
             </div>
-            <div class="stat-card">
-                <div class="value" id="stat-gifs">-</div>
-                <div class="label">Stworzonych GIF-ów</div>
+            <div class="stat-box">
+                <div class="stat-number" id="stat-gifs">...</div>
+                <div class="stat-label">🎞️ Stworzonych GIF-ów</div>
             </div>
-            <div class="stat-card">
-                <div class="value" id="stat-compilations">-</div>
-                <div class="label">Kompilacji Wideo</div>
+            <div class="stat-box">
+                <div class="stat-number" id="stat-compilations">...</div>
+                <div class="stat-label">✂️ Kompilacji Wideo</div>
             </div>
         </div>
 
-        <!-- Hall of Fame -->
-        <div class="card">
-            <h2 style="font-size: 1.35rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                🏆 Hall of Fame • <span style="color: var(--accent-color);">Top Twórcy</span>
-            </h2>
-            <div style="overflow-x: auto;">
-                <table class="hof-table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Twórca</th>
-                            <th>Shoty</th>
-                            <th>Screeny</th>
-                            <th>Gify</th>
-                            <th>Punkty</th>
-                        </tr>
-                    </thead>
-                    <tbody id="leaderboard-body">
-                        <!-- Wypełniane dynamicznie z API bota -->
-                        <tr>
-                            <td colspan="6" style="text-align: center; color: var(--text-muted);">Ładowanie rankingu...</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <!-- Zwijana sekcja Hall of Fame (identyczna mechanika jak FAQ) -->
+        <h2 class="section-title">Ranking <span>Hall of Fame</span></h2>
+
+        <details class="expand-box">
+            <summary>
+                <span>🏆 Hall of Fame • <span style="color: var(--kick-green);">Top Twórcy Społeczności</span></span>
+                <span class="icon-plus">+</span>
+            </summary>
+            <div class="expand-content">
+                <div class="table-wrap">
+                    <table class="hof-table">
+                        <thead>
+                            <tr>
+                                <th>Miejsce</th>
+                                <th>Użytkownik</th>
+                                <th>🎬 Shoty</th>
+                                <th>📸 Screeny</th>
+                                <th>🎞️ GIF-y</th>
+                                <th>Punkty</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body">
+                            <tr>
+                                <td colspan="6" style="text-align: center; color: var(--text-muted); padding: 2rem;">
+                                    Pobieranie aktualnego rankingu z serwera...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+        </details>
 
         <!-- Sekcja FAQ -->
-        <h2 style="font-size: 1.5rem; font-weight: 700; text-align: center; margin-bottom: 1.5rem;">
-            Najczęściej zadawane <span style="color: var(--accent-color);">Pytania</span>
-        </h2>
+        <h2 class="section-title">Najczęściej zadawane <span>Pytania</span></h2>
 
-        <details class="faq-item">
-            <summary class="faq-question">
-                Jak dodać bota ZIEMIA 2.0 na swój serwer?
+        <details class="expand-box" open>
+            <summary>
+                <span>Jak dołączyć do serwera?</span>
+                <span class="icon-plus">+</span>
             </summary>
-            <div class="faq-answer">
-                Skorzystaj z przycisku „Dołącz do Discorda” powyżej, aby wejść na naszą społeczność, gdzie znajdziesz pełne instrukcje oraz oficjalne linki zaproszeniowe do bota.
+            <div class="expand-content">
+                Skorzystaj z przycisku „Dołącz do Discorda” aby dołączyć do naszej społeczności.
+            </div>
+        </details>
+
+        <details class="expand-box">
+            <summary>
+                <span>Jak wyciąć shota, screena lub GIF-a ze streamu?</span>
+                <span class="icon-plus">+</span>
+            </summary>
+            <div class="expand-content">
+                Wystarczy wejść na kanał z Panelem LIVE na naszym Discordzie, wybrać streamera z listy i kliknąć odpowiedni przycisk (Shot 30s, Screen HD lub GIF HD) albo użyć komend <code>/shot</code>, <code>/screen</code> oraz <code>/gif</code>.
+            </div>
+        </details>
+
+        <details class="expand-box">
+            <summary>
+                <span>Jak działa Studio Montażu i łączenie shotów?</span>
+                <span class="icon-plus">+</span>
+            </summary>
+            <div class="expand-content">
+                W dedykowanym kanale Studia Montażu możesz zaznaczyć od 2 do 10 dowolnych shotów z archiwum i jednym kliknięciem połączyć je w gotową kompilację MP4 lub dociąć wybrany fragment co do sekundy.
             </div>
         </details>
     </div>
 
-    <!-- Stopka -->
     <footer>
-        <p>ZIEMIA 2.0 &copy; 2026 • Stworzone dla społeczności <span>Kick.com</span></p>
+        ZIEMIA 2.0 &copy; 2026 • Zaawansowany system dla społeczności <span>Kick.com</span>
     </footer>
 
     <script>
-        // Automatyczne pobieranie statystyk i rankingu z endpointu HTTP bota (Railway)
-        // Wpisz tutaj adres URL swojego serwera z Railway (np. https://twoj-bot.up.railway.app)
-        const API_URL = "https://TWOJ_ADRES_Z_RAILWAY.up.railway.app";
+        const API_BASE = "https://kik-bot-production-4a45.up.railway.app";
 
-        async function fetchData() {
+        async function loadLiveStatsAndLeaderboard() {
             try {
-                // Pobieranie statystyk
-                const statsRes = await fetch(`${API_URL}/api/stats`);
-                if (statsRes.ok) {
-                    const stats = await statsRes.json();
-                    document.getElementById('stat-shots').innerText = stats.shots || 0;
-                    document.getElementById('stat-screens').innerText = stats.screens || 0;
-                    document.getElementById('stat-gifs').innerText = stats.gifs || 0;
-                    document.getElementById('stat-compilations').innerText = stats.compilations || 0;
+                const statsResp = await fetch(`${API_BASE}/api/stats`, { cache: "no-store" });
+                if (statsResp.ok) {
+                    const st = await statsResp.json();
+                    document.getElementById("stat-shots").textContent = st.shots ?? 0;
+                    document.getElementById("stat-screens").textContent = st.screens ?? 0;
+                    document.getElementById("stat-gifs").textContent = st.gifs ?? 0;
+                    document.getElementById("stat-compilations").textContent = st.compilations ?? 0;
                 }
+            } catch (err) {
+                console.error("Błąd pobierania /api/stats:", err);
+            }
 
-                // Pobieranie rankingu Hall of Fame
-                const topRes = await fetch(`${API_URL}/api/top`);
-                if (topRes.ok) {
-                    const leaderboard = await topRes.json();
-                    const tbody = document.getElementById('leaderboard-body');
-                    tbody.innerHTML = '';
+            try {
+                const topResp = await fetch(`${API_BASE}/api/top`, { cache: "no-store" });
+                if (topResp.ok) {
+                    const list = await topResp.json();
+                    const tbody = document.getElementById("leaderboard-body");
+                    tbody.innerHTML = "";
 
-                    if (leaderboard.length === 0) {
-                        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Brak danych w rankingu.</td></tr>';
+                    if (!Array.isArray(list) || list.length === 0) {
+                        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 1.5rem;">Brak zarejestrowanej aktywności.</td></tr>`;
                         return;
                     }
 
-                    leaderboard.forEach(user => {
-                        let rankIcon = `#${user.rank}`;
-                        if (user.rank === 1) rankIcon = '🥇';
-                        else if (user.rank === 2) rankIcon = '🥈';
-                        else if (user.rank === 3) rankIcon = '🥉';
+                    list.forEach((u, index) => {
+                        const rank = u.rank || (index + 1);
+                        let medal = `#${rank}`;
+                        if (rank === 1) medal = "🥇 1";
+                        else if (rank === 2) medal = "🥈 2";
+                        else if (rank === 3) medal = "🥉 3";
 
-                        const row = `
-                            <tr>
-                                <td><strong>${rankIcon}</strong></td>
-                                <td>${user.name}</td>
-                                <td>${user.shots}</td>
-                                <td>${user.screens}</td>
-                                <td>${user.gifs}</td>
-                                <td><strong style="color: var(--accent-color);">${user.score}</strong></td>
-                            </tr>
+                        const avatarUrl = u.avatar || "https://cdn.discordapp.com/embed/avatars/0.png";
+
+                        const tr = document.createElement("tr");
+                        tr.innerHTML = `
+                            <td><strong>${medal}</strong></td>
+                            <td>
+                                <div class="user-cell">
+                                    <img src="${avatarUrl}" alt="" class="user-avatar" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
+                                    <span>${u.name}</span>
+                                </div>
+                            </td>
+                            <td>${u.shots || 0}</td>
+                            <td>${u.screens || 0}</td>
+                            <td>${u.gifs || 0}</td>
+                            <td><span class="score-pill">${u.score || 0} pkt</span></td>
                         `;
-                        tbody.innerHTML += row;
+                        tbody.appendChild(tr);
                     });
                 }
-            } catch (e) {
-                console.error("Błąd podczas pobierania danych z API bota:", e);
+            } catch (err) {
+                console.error("Błąd pobierania /api/top:", err);
             }
         }
 
-        // Wywołanie po załadowaniu strony
-        fetchData();
-        // Odświeżanie co 60 sekund
-        setInterval(fetchData, 60000);
+        loadLiveStatsAndLeaderboard();
+        setInterval(loadLiveStatsAndLeaderboard, 45000);
     </script>
 </body>
 </html>
