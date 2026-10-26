@@ -36,7 +36,6 @@
                 radial-gradient(circle at 85% 30%, rgba(83, 252, 24, 0.04) 0%, transparent 40%);
         }
 
-        /* Pasek nawigacji */
         nav {
             display: flex;
             justify-content: space-between;
@@ -46,22 +45,31 @@
             padding: 1.5rem 1.5rem;
         }
 
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 900;
-            letter-spacing: -0.03em;
-            color: #fff;
-            text-decoration: none;
+        .logo-wrap {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: #fff;
         }
 
-        .logo span {
+        .nav-logo-img {
+            height: 42px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .logo-text {
+            font-size: 1.35rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+        }
+
+        .logo-text span {
             color: var(--kick-green);
         }
 
-        /* Sekcja Hero */
         .hero {
             text-align: center;
             max-width: 900px;
@@ -129,7 +137,6 @@
             padding: 0 1.5rem 4rem;
         }
 
-        /* Liczniki Statystyk */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -167,7 +174,6 @@
             letter-spacing: 0.06em;
         }
 
-        /* Nagłówki sekcji */
         .section-title {
             text-align: center;
             font-size: 2rem;
@@ -180,7 +186,6 @@
             color: var(--kick-green);
         }
 
-        /* Zwijane kafelki (zarówno dla Hall of Fame, jak i FAQ) */
         details.expand-box {
             background: var(--card-bg);
             border: 1px solid var(--border-subtle);
@@ -231,7 +236,6 @@
             padding-top: 1.2rem;
         }
 
-        /* Tabela Hall of Fame z awatarami */
         .table-wrap {
             overflow-x: auto;
         }
@@ -310,7 +314,10 @@
 <body>
 
     <nav>
-        <a href="#" class="logo">🌍 ZIEMIA <span>2.0</span></a>
+        <a href="#" class="logo-wrap">
+            <img src="logo.png" alt="Logo ZIEMIA 2.0" class="nav-logo-img" onerror="this.style.display='none'">
+            <span class="logo-text">ZIEMIA <span>2.0</span></span>
+        </a>
         <a href="https://discord.gg/ajz47uhA9" target="_blank" class="btn-discord" style="padding: 0.6rem 1.3rem; font-size: 0.9rem;">
             Dołącz do Discorda
         </a>
@@ -326,7 +333,6 @@
     </section>
 
     <div class="container">
-        <!-- Liczniki na żywo -->
         <div class="stats-grid">
             <div class="stat-box">
                 <div class="stat-number" id="stat-shots">...</div>
@@ -346,7 +352,6 @@
             </div>
         </div>
 
-        <!-- Zwijana sekcja Hall of Fame (identyczna mechanika jak FAQ) -->
         <h2 class="section-title">Ranking <span>Hall of Fame</span></h2>
 
         <details class="expand-box">
@@ -379,7 +384,6 @@
             </div>
         </details>
 
-        <!-- Sekcja FAQ -->
         <h2 class="section-title">Najczęściej zadawane <span>Pytania</span></h2>
 
         <details class="expand-box" open>
