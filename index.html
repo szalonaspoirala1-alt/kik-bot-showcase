@@ -17,6 +17,7 @@
             --twitch-purple: #9146FF;
             --twitch-purple-dim: rgba(145, 70, 255, 0.16);
             --discord-blue: #5865F2;
+            --live-red: #ff3b3b;
             --bg-dark: #050709;
             --bg-card: rgba(12, 15, 20, 0.85);
             --bg-card-hover: rgba(18, 23, 31, 0.96);
@@ -345,6 +346,207 @@
             letter-spacing: 0.02em;
         }
 
+        /* ================= AKTUALNIE NA ŻYWO (LIVE STREAMERS) ================= */
+        .live-section {
+            margin-bottom: 76px;
+        }
+
+        .live-count-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 59, 59, 0.14);
+            border: 1px solid rgba(255, 59, 59, 0.45);
+            color: #ff6b6b;
+            font-weight: 700;
+            font-style: italic;
+            font-size: 0.9rem;
+            padding: 5px 16px;
+            border-radius: 999px;
+            margin-top: 10px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .live-dot {
+            width: 9px;
+            height: 9px;
+            background: var(--live-red);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--live-red);
+            animation: pulse 1.4s infinite;
+        }
+
+        .live-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 20px;
+        }
+
+        .live-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            backdrop-filter: blur(14px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .live-card.platform-kick {
+            border-top: 3px solid var(--kick-green);
+        }
+
+        .live-card.platform-twitch {
+            border-top: 3px solid var(--twitch-purple);
+        }
+
+        .live-card.platform-kick:hover {
+            transform: translateY(-5px);
+            border-color: rgba(83, 252, 24, 0.5);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), 0 0 24px rgba(83, 252, 24, 0.14);
+        }
+
+        .live-card.platform-twitch:hover {
+            transform: translateY(-5px);
+            border-color: rgba(145, 70, 255, 0.55);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55), 0 0 24px rgba(145, 70, 255, 0.18);
+        }
+
+        .live-card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .live-plat-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px 12px;
+            border-radius: 8px;
+        }
+
+        .live-plat-tag.kick {
+            background: rgba(83, 252, 24, 0.12);
+            color: var(--kick-green);
+            border: 1px solid rgba(83, 252, 24, 0.35);
+        }
+
+        .live-plat-tag.twitch {
+            background: rgba(145, 70, 255, 0.15);
+            color: #c49bff;
+            border: 1px solid rgba(145, 70, 255, 0.4);
+        }
+
+        .live-uptime {
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-style: italic;
+            color: #ff7b7b;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .live-streamer-name {
+            font-size: 1.55rem;
+            font-weight: 700;
+            font-style: italic;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .live-category {
+            display: inline-block;
+            font-size: 0.9rem;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--kick-green);
+            margin-bottom: 10px;
+        }
+
+        .platform-twitch .live-category {
+            color: #c49bff;
+        }
+
+        .live-title {
+            font-size: 0.98rem;
+            font-weight: 600;
+            font-style: italic;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .btn-watch-live {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-style: italic;
+            font-size: 1rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: all 0.25s ease;
+        }
+
+        .btn-watch-live.kick {
+            background: rgba(83, 252, 24, 0.14);
+            color: var(--kick-green);
+            border: 1px solid rgba(83, 252, 24, 0.45);
+        }
+
+        .btn-watch-live.kick:hover {
+            background: var(--kick-green);
+            color: #050709;
+            box-shadow: 0 0 22px rgba(83, 252, 24, 0.45);
+        }
+
+        .btn-watch-live.twitch {
+            background: rgba(145, 70, 255, 0.18);
+            color: #d2b3ff;
+            border: 1px solid rgba(145, 70, 255, 0.5);
+        }
+
+        .btn-watch-live.twitch:hover {
+            background: var(--twitch-purple);
+            color: #ffffff;
+            box-shadow: 0 0 22px rgba(145, 70, 255, 0.55);
+        }
+
+        .live-empty-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 36px 24px;
+            text-align: center;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-style: italic;
+            font-size: 1.08rem;
+        }
+
         /* ================= HALL OF FAME (Z PODIUM TOP 3) ================= */
         .hof-section {
             margin-bottom: 76px;
@@ -570,7 +772,7 @@
             text-transform: uppercase;
         }
 
-        /* ================= FUNKCJE BOTA (SYMETRYCZNA SIATKA 2x2) ================= */
+        /* ================= FUNKCJE BOTA (SYMETRYCZNA SIATKA) ================= */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
@@ -725,6 +927,22 @@
             </div>
         </section>
 
+        <!-- AKTUALNIE NA ŻYWO (LIVE STREAMERS) -->
+        <section class="live-section">
+            <div class="section-header">
+                <h2 class="section-title">📡 Aktualnie <span>Na Żywo</span></h2>
+                <p class="section-desc">Obserwowani twórcy prowadzący w tej chwili transmisję na Kick.com oraz Twitch.tv</p>
+                <div class="live-count-badge">
+                    <span class="live-dot"></span>
+                    <span id="live-counter-text">Sprawdzanie statusów LIVE...</span>
+                </div>
+            </div>
+
+            <div id="live-streamers-container">
+                <div class="live-empty-box">Ładowanie listy aktywnych transmisji...</div>
+            </div>
+        </section>
+
         <!-- HALL OF FAME (Z PODIUM TOP 3) -->
         <section class="hof-section">
             <div class="section-header">
@@ -849,6 +1067,52 @@
             }
         }
 
+        async function loadLiveStreamers() {
+            const container = document.getElementById("live-streamers-container");
+            const counterText = document.getElementById("live-counter-text");
+            try {
+                const res = await fetch(`${API_BASE}/api/live`);
+                if (res.ok) {
+                    const list = await res.json();
+                    counterText.textContent = `${list.length} STREAMERÓW NA ŻYWO`;
+
+                    if (!list || list.length === 0) {
+                        container.innerHTML = `<div class="live-empty-box">⚪ Aktualnie żaden z monitorowanych twórców nie prowadzi transmisji na żywo.</div>`;
+                        return;
+                    }
+
+                    container.innerHTML = `
+                        <div class="live-grid">
+                            ${list.map(item => {
+                                const isTwitch = item.platform === "twitch";
+                                const platClass = isTwitch ? "twitch" : "kick";
+                                const platLabel = isTwitch ? "🟣 TWITCH.TV" : "🟢 KICK.COM";
+                                return `
+                                    <div class="live-card platform-${platClass}">
+                                        <div>
+                                            <div class="live-card-top">
+                                                <span class="live-plat-tag ${platClass}">${platLabel}</span>
+                                                <span class="live-uptime"><span class="live-dot"></span> ⏱️ ${item.uptime || 'LIVE'}</span>
+                                            </div>
+                                            <div class="live-streamer-name">${item.name}</div>
+                                            <div class="live-category">🎮 ${item.category}</div>
+                                            <div class="live-title">${item.title}</div>
+                                        </div>
+                                        <a href="${item.url}" target="_blank" class="btn-watch-live ${platClass}">
+                                            ▶ Oglądaj Transmisję Na Żywo
+                                        </a>
+                                    </div>
+                                `;
+                            }).join("")}
+                        </div>
+                    `;
+                }
+            } catch (e) {
+                counterText.textContent = "STATUS LIVE";
+                container.innerHTML = `<div class="live-empty-box">Trwa synchronizacja listy transmisji z serwerem...</div>`;
+            }
+        }
+
         async function loadLeaderboard() {
             const container = document.getElementById("leaderboard-list");
             try {
@@ -912,8 +1176,10 @@
         }
 
         loadStats();
+        loadLiveStreamers();
         loadLeaderboard();
         setInterval(loadStats, 30000);
+        setInterval(loadLiveStreamers, 30000);
         setInterval(loadLeaderboard, 60000);
     </script>
 </body>
