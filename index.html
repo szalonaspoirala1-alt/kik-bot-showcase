@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZIEMIA 2.0 – Twoje Centrum Streamów & Kik-Bot</title>
+
+    <!-- IKONA STRONY & META TAGI OPENGRAPH (PROFESJONALNY PODGLĄD LINKU NA DISCORDZIE) -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <meta name="theme-color" content="#53fc18">
+    <meta name="description" content="Automatyczne wycinanie shotów w Full HD 1080p z Kicka i Twitcha, bezstratne zrzuty ekranu PNG, ostre GIF-y HD oraz interaktywne Studio Montażu na Discordzie ZIEMIA 2.0.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ZIEMIA 2.0 – Twoje Centrum Streamów & Kik-Bot">
+    <meta property="og:description" content="Wycinaj shoty 1080p z Kicka i Twitcha, twórz ostre GIF-y HD, łącz klipy w Studio Montażu i rywalizuj w rankingu Hall of Fame!">
+    <meta property="og:image" content="logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,500;0,600;0,700;1,600;1,700&display=swap&subset=latin-ext" rel="stylesheet">
@@ -24,6 +35,11 @@
             --text-muted: #a6b0c0;
             --border-color: rgba(255, 255, 255, 0.08);
             --font-main: 'Chakra Petch', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 84px;
         }
 
         * {
@@ -70,6 +86,101 @@
         @keyframes pulse {
             0%, 100% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.4); opacity: 0.55; }
+        }
+
+        /* ================= PŁYWAJĄCY PASEK NAWIGACJI (STICKY GLASS NAVBAR) ================= */
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: rgba(5, 7, 10, 0.82);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(83, 252, 24, 0.18);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.55);
+        }
+
+        .nav-inner {
+            max-width: 1220px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .nav-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 700;
+            font-style: italic;
+            font-size: 1.22rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .nav-brand img {
+            height: 36px;
+            width: auto;
+            filter: drop-shadow(0 0 10px rgba(83, 252, 24, 0.45));
+        }
+
+        .nav-brand span {
+            color: var(--kick-green);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 700;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 7px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--kick-green);
+            background: rgba(83, 252, 24, 0.08);
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #5865F2 0%, #404EED 100%);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 700;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 9px 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 16px rgba(88, 101, 242, 0.45);
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(88, 101, 242, 0.75);
         }
 
         /* ================= HERO SECTION & DUŻE LOGO ================= */
@@ -373,9 +484,9 @@
             white-space: nowrap;
         }
 
-        /* ================= TERMINAL AKTYWNOŚCI NA ŻYWO (UPORZĄDKOWANY CZASOWO) ================= */
+        /* ================= TERMINAL AKTYWNOŚCI NA ŻYWO (Z FILTRAMI I SORTOWANIEM) ================= */
         .terminal-section {
-            margin-bottom: 68px;
+            margin-bottom: 72px;
         }
 
         .terminal-window {
@@ -394,7 +505,7 @@
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
         }
 
         .terminal-title-group {
@@ -428,22 +539,43 @@
             color: #ffffff;
         }
 
-        .terminal-tag {
+        .terminal-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .term-filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text-muted);
             font-size: 0.78rem;
             font-weight: 700;
             font-style: italic;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
-            padding: 4px 12px;
-            border-radius: 999px;
-            background: rgba(83, 252, 24, 0.12);
+            letter-spacing: 0.06em;
+            padding: 5px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .term-filter-btn:hover {
+            color: #ffffff;
+            border-color: rgba(83, 252, 24, 0.4);
+        }
+
+        .term-filter-btn.active {
+            background: rgba(83, 252, 24, 0.15);
             color: var(--kick-green);
-            border: 1px solid rgba(83, 252, 24, 0.35);
+            border-color: var(--kick-green);
+            box-shadow: 0 0 12px rgba(83, 252, 24, 0.2);
         }
 
         .terminal-body {
             padding: 18px 22px;
-            max-height: 270px;
+            max-height: 280px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
@@ -538,6 +670,208 @@
             font-weight: 600;
             font-style: italic;
             letter-spacing: 0.02em;
+        }
+
+        /* ================= SEKCJA "JAK TO DZIAŁA?" (3 KROKI + INTERAKTYWNA MAKIETA DISCORDA) ================= */
+        .showcase-section {
+            margin-bottom: 78px;
+        }
+
+        .stepper-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+            margin-bottom: 32px;
+        }
+
+        .step-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 26px 24px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            border-color: rgba(83, 252, 24, 0.45);
+            transform: translateY(-4px);
+            background: var(--bg-card-hover);
+        }
+
+        .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 12px;
+            border-radius: 8px;
+            background: rgba(83, 252, 24, 0.14);
+            border: 1px solid rgba(83, 252, 24, 0.4);
+            color: var(--kick-green);
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 14px;
+        }
+
+        .step-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            font-style: italic;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .step-card p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        /* MAKIETA INTERFEJSU DISCORDA */
+        .discord-mockup-wrap {
+            background: linear-gradient(135deg, rgba(17, 19, 25, 0.96) 0%, rgba(11, 13, 18, 0.98) 100%);
+            border: 1px solid rgba(88, 101, 242, 0.38);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 30px rgba(88, 101, 242, 0.12);
+        }
+
+        .mockup-top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .mockup-channel-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-style: italic;
+            color: #ffffff;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        .mockup-hint {
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--kick-green);
+            background: rgba(83, 252, 24, 0.1);
+            border: 1px solid rgba(83, 252, 24, 0.3);
+            padding: 4px 12px;
+            border-radius: 999px;
+        }
+
+        .discord-embed-card {
+            background: #1e1f22;
+            border-left: 4px solid var(--kick-green);
+            border-radius: 8px;
+            padding: 18px 20px;
+            max-width: 680px;
+            margin-bottom: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .d-embed-title {
+            font-weight: 700;
+            font-style: italic;
+            font-size: 1.08rem;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .d-embed-desc {
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-style: italic;
+            color: #dbdee1;
+            margin-bottom: 10px;
+        }
+
+        .d-embed-meta {
+            font-size: 0.92rem;
+            font-weight: 700;
+            font-style: italic;
+            color: #f2f3f5;
+            margin-bottom: 10px;
+        }
+
+        .d-embed-footer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-style: italic;
+            color: #949ba4;
+        }
+
+        .d-buttons-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .d-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            font-style: italic;
+            color: #ffffff;
+            padding: 9px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .d-btn:hover, .d-btn.active-preview {
+            transform: translateY(-2px);
+            outline: 2px solid var(--kick-green);
+            box-shadow: 0 0 16px rgba(83, 252, 24, 0.35);
+        }
+
+        .d-btn-green { background: #248046; }
+        .d-btn-green:hover { background: #1a6334; }
+
+        .d-btn-blue { background: #5865F2; }
+        .d-btn-blue:hover { background: #4752C4; }
+
+        .d-btn-gray { background: #4e5058; }
+        .d-btn-gray:hover { background: #6d6f78; }
+
+        .mockup-explainer-box {
+            margin-top: 16px;
+            padding: 15px 18px;
+            border-radius: 12px;
+            background: rgba(83, 252, 24, 0.08);
+            border: 1px solid rgba(83, 252, 24, 0.35);
+            font-size: 0.98rem;
+            font-weight: 600;
+            font-style: italic;
+            color: #ffffff;
+            transition: all 0.25s ease;
+        }
+
+        .mockup-explainer-box strong {
+            color: var(--kick-green);
+            text-transform: uppercase;
         }
 
         /* ================= SYSTEM PUNKTACJI ================= */
@@ -1072,6 +1406,32 @@
             line-height: 1.6;
         }
 
+        /* ================= POWIADOMIENIE TOAST ================= */
+        .toast-notification {
+            position: fixed;
+            bottom: 26px;
+            right: 26px;
+            z-index: 9999;
+            background: rgba(10, 14, 20, 0.96);
+            border: 1px solid var(--kick-green);
+            color: #ffffff;
+            padding: 14px 22px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-style: italic;
+            font-size: 0.95rem;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7), 0 0 20px rgba(83, 252, 24, 0.25);
+            transform: translateY(120%);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+        }
+
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
         footer {
             text-align: center;
             padding: 36px 0;
@@ -1088,6 +1448,7 @@
         footer span.purple { color: #b685ff; }
 
         @media (max-width: 768px) {
+            .nav-links { display: none; }
             .stat-label { white-space: normal; }
             .telemetry-bar { gap: 14px; padding: 12px 16px; }
             .hof-item {
@@ -1103,6 +1464,26 @@
     </style>
 </head>
 <body>
+
+    <!-- PŁYWAJĄCY PASEK NAWIGACJI (STICKY GLASS NAVBAR) -->
+    <nav class="sticky-nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-brand">
+                <img src="logo.png" alt="Ziemia 2.0" onerror="this.style.display='none'">
+                <div>ZIEMIA <span>2.0</span></div>
+            </a>
+            <div class="nav-links">
+                <a href="#sekcja-statystyki" class="nav-link">📊 Statystyki</a>
+                <a href="#sekcja-terminal" class="nav-link">⚡ Terminal Live</a>
+                <a href="#sekcja-jak-dziala" class="nav-link">🎬 Jak to działa</a>
+                <a href="#sekcja-ranking" class="nav-link">🏆 Hall of Fame</a>
+                <a href="#sekcja-komendy" class="nav-link">💻 Komendy</a>
+            </div>
+            <a href="https://discord.gg/ajz47uhA9" target="_blank" class="nav-cta">
+                Dołącz na Discord
+            </a>
+        </div>
+    </nav>
 
     <div class="container">
         <!-- HERO -->
@@ -1150,7 +1531,7 @@
         </header>
 
         <!-- STATYSTYKI NA ŻYWO -->
-        <section class="stats-grid">
+        <section id="sekcja-statystyki" class="stats-grid">
             <div class="stat-card">
                 <div class="stat-icon">🎬</div>
                 <div class="stat-value" id="stat-shots">0</div>
@@ -1173,8 +1554,8 @@
             </div>
         </section>
 
-        <!-- TEKSTOWY TERMINAL AKTYWNOŚCI NA ŻYWO (SORTOWANY PO GODZINIE OD NAJNOWSZYCH) -->
-        <section class="terminal-section">
+        <!-- TEKSTOWY TERMINAL AKTYWNOŚCI NA ŻYWO (Z FILTRAMI KATEGORII I SORTOWANIEM GODZIN) -->
+        <section id="sekcja-terminal" class="terminal-section">
             <div class="terminal-window">
                 <div class="terminal-header">
                     <div class="terminal-title-group">
@@ -1185,14 +1566,74 @@
                         </div>
                         <span class="terminal-title">⚡ TERMINAL AKTYWNOŚCI SPOŁECZNOŚCI // LIVE FEED</span>
                     </div>
-                    <span class="terminal-tag">🛡️ TRYB TEKSTOWY • 100% DMCA SAFE</span>
+                    <div class="terminal-controls">
+                        <button class="term-filter-btn active" onclick="setTerminalFilter('all', this)">Wszystkie</button>
+                        <button class="term-filter-btn" onclick="setTerminalFilter('shot', this)">🎬 Shoty</button>
+                        <button class="term-filter-btn" onclick="setTerminalFilter('gif', this)">🎞️ GIF-y</button>
+                        <button class="term-filter-btn" onclick="setTerminalFilter('screen', this)">📸 Screeny</button>
+                    </div>
                 </div>
                 <div class="terminal-body" id="activity-terminal"></div>
             </div>
         </section>
 
+        <!-- SEKCJA: JAK TO DZIAŁA? (3 KROKI + INTERAKTYWNY SYMULATOR KAFELKÓW DISCORDA) -->
+        <section id="sekcja-jak-dziala" class="showcase-section">
+            <div class="section-header">
+                <h2 class="section-title">🎬 Jak Działa <span>Kik-Bot?</span></h2>
+                <p class="section-desc">Od akcji na żywo do gotowego materiału 1080p w kilka sekund — przetestuj interaktywny panel poniżej</p>
+            </div>
+
+            <div class="stepper-grid">
+                <div class="step-card">
+                    <span class="step-num">Krok 01</span>
+                    <h3>Wykrycie Akcji na Żywo</h3>
+                    <p>Bot przez całą dobę monitoruje transmisje na Kick.com oraz Twitch.tv i utrzymuje gotowość bufora wideo w jakości Full HD.</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-num">Krok 02</span>
+                    <h3>Jeden Klik na Discordzie</h3>
+                    <p>Wybierasz streamera na stałym panelu LIVE lub wpisujesz <code>/shot</code>. Bot w kilka sekund wycina ostatnie 30 sekund akcji z logo ZIEMIA 2.0.</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-num">Krok 03</span>
+                    <h3>Edycja &amp; Studio Montażu</h3>
+                    <p>Przyciskami pod filmem możesz od razu cofnąć start o 10s, odciąć niepotrzebny początek lub końcówkę i połączyć klipy w kompilację.</p>
+                </div>
+            </div>
+
+            <div class="discord-mockup-wrap">
+                <div class="mockup-top-bar">
+                    <div class="mockup-channel-tag"># 🎬︱kanał-shoterski • Podgląd Interaktywnego Panelu Shota</div>
+                    <span class="mockup-hint">👆 Kliknij dowolny przycisk poniżej, aby sprawdzić jak działa!</span>
+                </div>
+
+                <div class="discord-embed-card">
+                    <div class="d-embed-title">🎬 Shot: patiro [🟢 Kick]</div>
+                    <div class="d-embed-desc">💬 *"🎮 IRL • "🔥ZAMIESZKI W TIRANIE🔥!bałkany !plan..." (20:52)"*</div>
+                    <div class="d-embed-meta">⏱️ 30s akcji | 📺 Jakość: 1080p | 💾 Waga: 8.40 MB</div>
+                    <div class="d-embed-footer">🟢 ZIEMIA 2.0 • Wycięte przez: Żapson</div>
+                </div>
+
+                <div class="d-buttons-row">
+                    <button class="d-btn d-btn-green active-preview" onclick="explainButton('cont', this)">➕ Nagraj dalej (+30s od końca)</button>
+                    <button class="d-btn d-btn-blue" onclick="explainButton('rewind', this)">⏪ Cofnij start (+10s od początku)</button>
+                </div>
+                <div class="d-buttons-row">
+                    <button class="d-btn d-btn-gray" onclick="explainButton('desc', this)">✏️ Opis</button>
+                    <button class="d-btn d-btn-gray" onclick="explainButton('trim_start', this)">✂️ Odetnij (-10s od początku)</button>
+                    <button class="d-btn d-btn-gray" onclick="explainButton('trim_end', this)">✂️ Odetnij (-10s od końca)</button>
+                    <button class="d-btn d-btn-gray" onclick="explainButton('watch', this)">🟢 Oglądaj na Kick ↗</button>
+                </div>
+
+                <div class="mockup-explainer-box" id="mockup-explainer">
+                    <strong>➕ Nagraj dalej (+30s od końca):</strong> Jeśli akcja na streamie nadal trwa, ten przycisk dogrywa kolejne 30 sekund transmisji jako Część 2 bez gubienia ani jednej sekundy!
+                </div>
+            </div>
+        </section>
+
         <!-- HALL OF FAME + WYSZUKIWARKA GRACZA (KARTA ŁOWCY) + SYSTEM RANG I ODZNAK -->
-        <section class="hof-section">
+        <section id="sekcja-ranking" class="hof-section">
             <div class="section-header">
                 <h2 class="section-title">🏆 Ranking <span>Hall of Fame</span></h2>
                 <p class="section-desc">Sprawdź swoją Kartę Łowcy, zdobywaj rangi i walcz o odznaki rekordzistów serwera</p>
@@ -1258,7 +1699,7 @@
         </section>
 
         <!-- FUNKCJE BOTA -->
-        <section>
+        <section id="sekcja-komendy">
             <div class="section-header">
                 <h2 class="section-title">⚡ Możliwości <span>Kik-Bota</span></h2>
                 <p class="section-desc">Kliknij w dowolną komendę, aby ją skopiować i użyć na serwerze Discord</p>
@@ -1289,6 +1730,9 @@
         </section>
     </div>
 
+    <!-- POWIADOMIENIE TOAST -->
+    <div id="toastBox" class="toast-notification">📋 Skopiowano komendę do schowka!</div>
+
     <footer>
         <div class="container">
             &copy; 2026 <span class="green">ZIEMIA 2.0</span> • Obsługa <span class="green">KICK.COM</span> &amp; <span class="purple">TWITCH.TV</span> • Powered by Kik-Bot Engine
@@ -1302,6 +1746,8 @@
 
         const currentStats = { shots: 0, screens: 0, gifs: 0, compilations: 0 };
         let globalLeaderboard = [];
+        let activeTerminalFilter = "all";
+        let toastTimer = null;
 
         const RANKS = [
             { min: 0,   max: 15,  name: "🌱 Rekrut Ziemi 2.0",     next: "📸 Paparazzi" },
@@ -1310,6 +1756,35 @@
             { min: 120, max: 250, name: "🎬 Szef Montażowni",      next: "👑 Legenda Ziemi 2.0" },
             { min: 250, max: 999999, name: "👑 Legenda Ziemi 2.0", next: "MAX POZIOM" }
         ];
+
+        const BUTTON_EXPLANATIONS = {
+            cont: "<strong>➕ Nagraj dalej (+30s od końca):</strong> Jeśli akcja na streamie nadal trwa, ten przycisk dogrywa kolejne 30 sekund transmisji jako Część 2 bez gubienia ani jednej sekundy!",
+            rewind: "<strong>⏪ Cofnij start (+10s od początku):</strong> Spóźniłeś się z wycięciem shota? Bot sięga do ukrytego 10-sekundowego bufora wstecznego i dodaje wcześniejsze 10 sekund na początek nagrania!",
+            desc: "<strong>✏️ Opis:</strong> Otwiera okienko na Discordzie, w którym możesz w każdej chwili nadać shotowi własny tytuł lub zabawny komentarz (dzięki temu łatwiej znajdziesz go komendą /szukaj).",
+            trim_start: "<strong>✂️ Odetnij (-10s od początku):</strong> Ucina pierwsze 10 sekund filmu, jeśli właściwa akcja zaczęła się dopiero w dalszej części nagrania.",
+            trim_end: "<strong>✂️ Odetnij (-10s od końca):</strong> Ucina ostatnie 10 sekund z końca nagrania, pozostawiając samą esencję akcji.",
+            watch: "<strong>🟢 Oglądaj na Kick / Twitch:</strong> Bezpośredni odnośnik przenoszący jednym kliknięciem prosto na kanał streamera."
+        };
+
+        function showToast(message) {
+            const box = document.getElementById("toastBox");
+            if (!box) return;
+            box.textContent = message;
+            box.classList.add("show");
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                box.classList.remove("show");
+            }, 2600);
+        }
+
+        function explainButton(key, btnEl) {
+            const expBox = document.getElementById("mockup-explainer");
+            if (expBox && BUTTON_EXPLANATIONS[key]) {
+                expBox.innerHTML = BUTTON_EXPLANATIONS[key];
+            }
+            document.querySelectorAll(".d-btn").forEach(b => b.classList.remove("active-preview"));
+            if (btnEl) btnEl.classList.add("active-preview");
+        }
 
         function getRankInfo(score) {
             for (const r of RANKS) {
@@ -1332,6 +1807,7 @@
             navigator.clipboard.writeText(cmdText);
             const original = el.textContent;
             el.textContent = "✅ Skopiowano!";
+            showToast(`📋 Skopiowano komendę ${cmdText} do schowka!`);
             setTimeout(() => { el.textContent = original; }, 1400);
         }
 
@@ -1357,7 +1833,7 @@
             window.requestAnimationFrame(step);
         }
 
-        /* ================= ZARZĄDZANIE HISTORIĄ TERMINALA (SORTOWANIE PO GODZINIE + ODPORNOŚĆ NA F5) ================= */
+        /* ================= ZARZĄDZANIE HISTORIĄ TERMINALA (FILTRY + SORTOWANIE PO GODZINIE + ODPORNOŚĆ NA F5) ================= */
         function timeToSeconds(tStr) {
             if (!tStr || typeof tStr !== "string") return -1;
             const parts = tStr.trim().split(":").map(Number);
@@ -1391,22 +1867,40 @@
 
         function saveTerminalLogs(logs) {
             try {
-                const sorted = sortTerminalLogs(logs).slice(0, 12);
+                const sorted = sortTerminalLogs(logs).slice(0, 15);
                 localStorage.setItem(STORAGE_LOGS_KEY, JSON.stringify(sorted));
             } catch (e) {}
+        }
+
+        function setTerminalFilter(filterType, btnEl) {
+            activeTerminalFilter = filterType;
+            document.querySelectorAll(".term-filter-btn").forEach(b => b.classList.remove("active"));
+            if (btnEl) btnEl.classList.add("active");
+            renderTerminalFromStorage();
+        }
+
+        function matchesFilter(item, filterType) {
+            if (filterType === "all") return true;
+            const act = (item.action || "").toLowerCase();
+            if (filterType === "shot") return act.includes("shot");
+            if (filterType === "gif") return act.includes("gif") || act.includes("animac");
+            if (filterType === "screen") return act.includes("screen") || act.includes("zrzut");
+            return true;
         }
 
         function renderTerminalFromStorage() {
             const term = document.getElementById("activity-terminal");
             if (!term) return;
-            const logs = getSavedTerminalLogs();
+            const allLogs = getSavedTerminalLogs();
+            const logs = allLogs.filter(item => matchesFilter(item, activeTerminalFilter));
+
             if (logs.length === 0) {
                 term.innerHTML = `
                     <div class="terminal-line">
                         <div class="term-left">
                             <span class="term-time">ONLINE</span>
                             <span class="term-user">SYSTEM</span>
-                            <span>Synchronizacja historii aktywności graczy z serwerem...</span>
+                            <span>Brak wpisów w wybranej kategorii lub trwa synchronizacja z serwerem...</span>
                         </div>
                         <span class="term-pts">LIVE</span>
                     </div>
