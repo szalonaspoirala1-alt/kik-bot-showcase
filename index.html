@@ -373,7 +373,7 @@
             white-space: nowrap;
         }
 
-        /* ================= TERMINAL AKTYWNOŚCI NA ŻYWO (Z PAMIĘCIĄ F5) ================= */
+        /* ================= TERMINAL AKTYWNOŚCI NA ŻYWO (UPORZĄDKOWANY CZASOWO) ================= */
         .terminal-section {
             margin-bottom: 68px;
         }
@@ -1137,7 +1137,7 @@
                 </a>
             </div>
 
-            <!-- PASEK STATUSU PRZENIESIONY POD PRZYCISK DISCORDA (TYLKO ONLINE + PING API) -->
+            <!-- PASEK STATUSU POD PRZYCISKIEM DISCORDA (ONLINE + PING API) -->
             <div class="telemetry-bar">
                 <div class="telemetry-item">
                     <span class="status-dot"></span>
@@ -1173,7 +1173,7 @@
             </div>
         </section>
 
-        <!-- TEKSTOWY TERMINAL AKTYWNOŚCI NA ŻYWO (ZAPISYWANY W LOCALSTORAGE + PRAWDZIWE NICKI) -->
+        <!-- TEKSTOWY TERMINAL AKTYWNOŚCI NA ŻYWO (SORTOWANY PO GODZINIE OD NAJNOWSZYCH) -->
         <section class="terminal-section">
             <div class="terminal-window">
                 <div class="terminal-header">
@@ -1357,11 +1357,33 @@
             window.requestAnimationFrame(step);
         }
 
-        /* ================= ZARZĄDZANIE HISTORIĄ TERMINALA (ODPORNOŚĆ NA F5) ================= */
+        /* ================= ZARZĄDZANIE HISTORIĄ TERMINALA (SORTOWANIE PO GODZINIE + ODPORNOŚĆ NA F5) ================= */
+        function timeToSeconds(tStr) {
+            if (!tStr || typeof tStr !== "string") return -1;
+            const parts = tStr.trim().split(":").map(Number);
+            if (parts.length >= 2 && !isNaN(parts[0]) && !isNaN(parts[1])) {
+                const h = parts[0] || 0;
+                const m = parts[1] || 0;
+                const s = parts[2] || 0;
+                return (h * 3600) + (m * 60) + s;
+            }
+            return -1;
+        }
+
+        function sortTerminalLogs(logs) {
+            if (!Array.isArray(logs)) return [];
+            return logs.slice().sort((a, b) => {
+                const secA = timeToSeconds(a.time);
+                const secB = timeToSeconds(b.time);
+                return secB - secA;
+            });
+        }
+
         function getSavedTerminalLogs() {
             try {
                 const raw = localStorage.getItem(STORAGE_LOGS_KEY);
-                return raw ? JSON.parse(raw) : [];
+                const parsed = raw ? JSON.parse(raw) : [];
+                return sortTerminalLogs(parsed);
             } catch (e) {
                 return [];
             }
@@ -1369,7 +1391,8 @@
 
         function saveTerminalLogs(logs) {
             try {
-                localStorage.setItem(STORAGE_LOGS_KEY, JSON.stringify(logs.slice(0, 12)));
+                const sorted = sortTerminalLogs(logs).slice(0, 12);
+                localStorage.setItem(STORAGE_LOGS_KEY, JSON.stringify(sorted));
             } catch (e) {}
         }
 
@@ -1407,7 +1430,7 @@
             if (id && logs.some(x => x.id === id)) {
                 return;
             }
-            logs.unshift({
+            logs.push({
                 id: id || `${Date.now()}_${Math.random()}`,
                 time: timeStr || new Date().toLocaleTimeString("pl-PL", { hour: "2-digit", minute: "2-digit", second: "2-digit" }),
                 user: userText,
@@ -1425,7 +1448,7 @@
                 if (res.ok) {
                     const events = await res.json();
                     if (Array.isArray(events) && events.length > 0) {
-                        events.slice().reverse().forEach(ev => {
+                        events.forEach(ev => {
                             addPersistentTerminalLog(
                                 ev.id,
                                 ev.time,
@@ -1621,9 +1644,8 @@
                 localStorage.setItem(STORAGE_USER_SNAPSHOT_KEY, JSON.stringify(newMap));
             } catch (e) {}
 
-            // Jeśli terminal był zupełnie pusty (pierwsza wizyta), inicjujemy go topowymi graczami z ich prawdziwymi nickami
             if (getSavedTerminalLogs().length === 0 && list.length > 0) {
-                list.slice(0, 5).reverse().forEach((u, i) => {
+                list.slice(0, 5).forEach((u, i) => {
                     const rInfo = getRankInfo(u.score);
                     const lineStyle = u.rank === 1 ? "gold-line" : (i % 2 === 0 ? "" : "purple-line");
                     addPersistentTerminalLog(
@@ -1718,7 +1740,8 @@
             }
         }
 
-        // Natychmiastowe wczytanie zapisanych logów przed zapytaniem do API (brak resetu po F5)
+        // Uporządkowanie zapisanych logów przy starcie i wyrenderowanie od najnowszej godziny
+        saveTerminalLogs(getSavedTerminalLogs());
         renderTerminalFromStorage();
         loadStats();
         loadLeaderboard();
