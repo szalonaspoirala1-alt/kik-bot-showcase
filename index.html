@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZIEMIA 2.0 – Twoje Centrum Streamów & Kik-Bot</title>
 
-    <!-- IKONA STRONY & META TAGI OPENGRAPH (PROFESJONALNY PODGLĄD LINKU NA DISCORDZIE) -->
     <link rel="icon" type="image/png" href="logo.png">
     <meta name="theme-color" content="#53fc18">
-    <meta name="description" content="Automatyczne wycinanie shotów w Full HD 1080p z Kicka i Twitcha, bezstratne zrzuty ekranu PNG, ostre GIF-y HD oraz interaktywne Studio Montażu na Discordzie ZIEMIA 2.0.">
+    <meta name="description" content="Automatyczne wycinanie shotów w Full HD 1080p z Kicka i Twitcha, bezstratne zrzuty ekranu PNG, ostre GIF-y HD oraz archiwum nagrań na Discordzie ZIEMIA 2.0.">
     <meta property="og:type" content="website">
     <meta property="og:title" content="ZIEMIA 2.0 – Twoje Centrum Streamów & Kik-Bot">
-    <meta property="og:description" content="Wycinaj shoty 1080p z Kicka i Twitcha, twórz ostre GIF-y HD, łącz klipy w Studio Montażu i rywalizuj w rankingu Hall of Fame!">
+    <meta property="og:description" content="Wycinaj shoty 1080p z Kicka i Twitcha, twórz ostre GIF-y HD, przeszukuj bazę komendą /szukaj i rywalizuj w rankingu Hall of Fame!">
     <meta property="og:image" content="logo.png">
     <meta name="twitter:card" content="summary_large_image">
 
@@ -88,7 +87,7 @@
             50% { transform: scale(1.4); opacity: 0.55; }
         }
 
-        /* ================= PŁYWAJĄCY PASEK NAWIGACJI (STICKY GLASS NAVBAR) ================= */
+        /* ================= PŁYWAJĄCY PASEK NAWIGACJI ================= */
         .sticky-nav {
             position: sticky;
             top: 0;
@@ -183,7 +182,7 @@
             box-shadow: 0 8px 24px rgba(88, 101, 242, 0.75);
         }
 
-        /* ================= HERO SECTION & DUŻE LOGO ================= */
+        /* ================= HERO SECTION, LOGO & ODTWARZACZ INTRO WIDEO ================= */
         header.hero {
             text-align: center;
             padding: 34px 0 46px;
@@ -192,22 +191,80 @@
 
         .logo-wrapper {
             width: 100%;
-            max-width: 980px;
-            margin: 0 auto 24px;
+            max-width: 920px;
+            margin: 0 auto 22px;
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .logo-wrapper:hover {
-            transform: scale(1.025) translateY(-4px);
+            transform: scale(1.02) translateY(-3px);
         }
 
         .logo-wrapper img {
             width: 100%;
-            max-width: 980px;
+            max-width: 920px;
             height: auto;
             display: block;
             margin: 0 auto;
             filter: drop-shadow(0 0 48px rgba(83, 252, 24, 0.45)) drop-shadow(0 0 80px rgba(145, 70, 255, 0.25));
+        }
+
+        /* ODTWARZACZ WIDEO INTRO (HALLOWEEN / ZIEMIA 2.0) */
+        .intro-video-box {
+            display: none;
+            position: relative;
+            max-width: 860px;
+            margin: 0 auto 28px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(83, 252, 24, 0.45);
+            background: #000000;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.8), 0 0 40px rgba(83, 252, 24, 0.2), 0 0 60px rgba(145, 70, 255, 0.2);
+        }
+
+        .intro-video-box.active {
+            display: block;
+        }
+
+        .intro-video-box video {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-height: 480px;
+            object-fit: cover;
+        }
+
+        .video-controls-overlay {
+            position: absolute;
+            bottom: 14px;
+            right: 14px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .video-ctrl-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(8, 11, 16, 0.88);
+            border: 1px solid rgba(83, 252, 24, 0.5);
+            color: var(--kick-green);
+            font-size: 0.84rem;
+            font-weight: 700;
+            font-style: italic;
+            text-transform: uppercase;
+            padding: 8px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.2s ease;
+        }
+
+        .video-ctrl-btn:hover {
+            background: rgba(83, 252, 24, 0.2);
+            color: #ffffff;
+            transform: translateY(-2px);
         }
 
         .platform-pills {
@@ -414,7 +471,7 @@
         /* ================= LICZNIKI STATYSTYK ================= */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 22px;
             margin: 24px 0 56px;
         }
@@ -484,7 +541,7 @@
             white-space: nowrap;
         }
 
-        /* ================= TERMINAL AKTYWNOŚCI NA ŻYWO (Z FILTRAMI I SORTOWANIEM) ================= */
+        /* ================= TERMINAL AKTYWNOŚCI NA ŻYWO ================= */
         .terminal-section {
             margin-bottom: 72px;
         }
@@ -672,7 +729,7 @@
             letter-spacing: 0.02em;
         }
 
-        /* ================= SEKCJA "JAK TO DZIAŁA?" (3 KROKI + INTERAKTYWNA MAKIETA DISCORDA) ================= */
+        /* ================= SEKCJA "JAK TO DZIAŁA?" (BEZ NAZW STREAMERÓW I BEZ LINKÓW) ================= */
         .showcase-section {
             margin-bottom: 78px;
         }
@@ -1465,7 +1522,7 @@
 </head>
 <body>
 
-    <!-- PŁYWAJĄCY PASEK NAWIGACJI (STICKY GLASS NAVBAR) -->
+    <!-- PŁYWAJĄCY PASEK NAWIGACJI -->
     <nav class="sticky-nav">
         <div class="nav-inner">
             <a href="#" class="nav-brand">
@@ -1488,8 +1545,21 @@
     <div class="container">
         <!-- HERO -->
         <header class="hero">
-            <div class="logo-wrapper">
+            <div class="logo-wrapper" id="heroLogoWrapper">
                 <img src="logo.png" alt="ZIEMIA 2.0 Logo" onerror="this.style.display='none'">
+            </div>
+
+            <!-- ODTWARZACZ FILMIKU INTRO (WCZYTUJE intro.mp4 LUB ZMIENNĄ INTRO_VIDEO_URL Z RAILWAY) -->
+            <div class="intro-video-box" id="introVideoBox">
+                <video id="introVideoPlayer" src="intro.mp4" autoplay loop muted playsinline></video>
+                <div class="video-controls-overlay">
+                    <button class="video-ctrl-btn" id="videoSoundBtn" onclick="toggleIntroSound()">
+                        🔇 Włącz dźwięk Intro
+                    </button>
+                    <button class="video-ctrl-btn" onclick="replayIntroVideo()">
+                        🔄 Od początku
+                    </button>
+                </div>
             </div>
 
             <div class="platform-pills">
@@ -1507,7 +1577,7 @@
                 TWOJE CENTRUM STREAMÓW <span class="highlight">ZIEMIA 2.0</span>
             </h1>
             <p class="hero-subtitle">
-                Automatyczne wycinanie shotów w Full HD 1080p z Kicka i Twitcha, bezstratne zrzuty ekranu, płynne GIF-y oraz interaktywne Studio Montażu dostępne prosto na naszym serwerze Discord.
+                Automatyczne wycinanie shotów w Full HD 1080p z Kicka i Twitcha, bezstratne zrzuty ekranu, płynne GIF-y oraz błyskawiczna wyszukiwarka nagrań dostępne prosto na naszym serwerze Discord.
             </p>
             <div class="cta-group">
                 <a href="https://discord.gg/ajz47uhA9" target="_blank" class="btn-discord">
@@ -1547,14 +1617,9 @@
                 <div class="stat-value" id="stat-gifs">0</div>
                 <div class="stat-label">Stworzonych GIF-ów</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-icon">✂️</div>
-                <div class="stat-value" id="stat-compilations">0</div>
-                <div class="stat-label">Gotowych Kompilacji</div>
-            </div>
         </section>
 
-        <!-- TEKSTOWY TERMINAL AKTYWNOŚCI NA ŻYWO (Z FILTRAMI KATEGORII I SORTOWANIEM GODZIN) -->
+        <!-- TEKSTOWY TERMINAL AKTYWNOŚCI NA ŻYWO (BEZ NAZW STREAMERÓW) -->
         <section id="sekcja-terminal" class="terminal-section">
             <div class="terminal-window">
                 <div class="terminal-header">
@@ -1577,7 +1642,7 @@
             </div>
         </section>
 
-        <!-- SEKCJA: JAK TO DZIAŁA? (3 KROKI + INTERAKTYWNY SYMULATOR KAFELKÓW DISCORDA) -->
+        <!-- SEKCJA: JAK TO DZIAŁA? (BEZ NAZW STREAMERÓW I BEZ LINKU DO STREAMA W PRZYKŁADOWEJ WIADOMOŚCI) -->
         <section id="sekcja-jak-dziala" class="showcase-section">
             <div class="section-header">
                 <h2 class="section-title">🎬 Jak Działa <span>Kik-Bot?</span></h2>
@@ -1593,12 +1658,12 @@
                 <div class="step-card">
                     <span class="step-num">Krok 02</span>
                     <h3>Jeden Klik na Discordzie</h3>
-                    <p>Wybierasz streamera na stałym panelu LIVE lub wpisujesz <code>/shot</code>. Bot w kilka sekund wycina ostatnie 30 sekund akcji z logo ZIEMIA 2.0.</p>
+                    <p>Używasz kafelka na stałym panelu LIVE lub wpisujesz <code>/shot</code>. Bot w kilka sekund wycina ostatnie 30 sekund akcji z logo ZIEMIA 2.0.</p>
                 </div>
                 <div class="step-card">
                     <span class="step-num">Krok 03</span>
-                    <h3>Edycja &amp; Studio Montażu</h3>
-                    <p>Przyciskami pod filmem możesz od razu cofnąć start o 10s, odciąć niepotrzebny początek lub końcówkę i połączyć klipy w kompilację.</p>
+                    <h3>Szybka Edycja Pod Filmikiem</h3>
+                    <p>Przyciskami pod filmem możesz od razu cofnąć start o 10s, dograć kolejne 30s albo odciąć niepotrzebny początek i końcówkę.</p>
                 </div>
             </div>
 
@@ -1609,10 +1674,10 @@
                 </div>
 
                 <div class="discord-embed-card">
-                    <div class="d-embed-title">🎬 Shot: patiro [🟢 Kick]</div>
-                    <div class="d-embed-desc">💬 *"🎮 IRL • "🔥ZAMIESZKI W TIRANIE🔥!bałkany !plan..." (20:52)"*</div>
-                    <div class="d-embed-meta">⏱️ 30s akcji | 📺 Jakość: 1080p | 💾 Waga: 8.40 MB</div>
-                    <div class="d-embed-footer">🟢 ZIEMIA 2.0 • Wycięte przez: Żapson</div>
+                    <div class="d-embed-title">🎬 Shot LIVE [🟢 1080p Full HD]</div>
+                    <div class="d-embed-desc">💬 *"Ale to siadło! Idealny moment wycięty prosto z transmisji na żywo"*</div>
+                    <div class="d-embed-meta">⏱️ 30s akcji | 📺 Jakość: 1080p | 💾 Waga: 7.80 MB</div>
+                    <div class="d-embed-footer">🟢 ZIEMIA 2.0 • Wycięte przez: Użytkownik Discord</div>
                 </div>
 
                 <div class="d-buttons-row">
@@ -1623,11 +1688,10 @@
                     <button class="d-btn d-btn-gray" onclick="explainButton('desc', this)">✏️ Opis</button>
                     <button class="d-btn d-btn-gray" onclick="explainButton('trim_start', this)">✂️ Odetnij (-10s od początku)</button>
                     <button class="d-btn d-btn-gray" onclick="explainButton('trim_end', this)">✂️ Odetnij (-10s od końca)</button>
-                    <button class="d-btn d-btn-gray" onclick="explainButton('watch', this)">🟢 Oglądaj na Kick ↗</button>
                 </div>
 
                 <div class="mockup-explainer-box" id="mockup-explainer">
-                    <strong>➕ Nagraj dalej (+30s od końca):</strong> Jeśli akcja na streamie nadal trwa, ten przycisk dogrywa kolejne 30 sekund transmisji jako Część 2 bez gubienia ani jednej sekundy!
+                    <strong>➕ Nagraj dalej (+30s od końca):</strong> Jeśli akcja na transmisji nadal trwa, ten przycisk dogrywa kolejne 30 sekund jako Część 2 bez gubienia ani jednej sekundy!
                 </div>
             </div>
         </section>
@@ -1709,22 +1773,22 @@
                 <div class="feature-card">
                     <span class="feature-cmd" onclick="copyCmd('/shot', this)">/shot</span>
                     <h3>Shoty 1080p (Kick &amp; Twitch)</h3>
-                    <p>Wycinaj ostatnie 5–60 sekund transmisji na żywo w jakości Full HD 1080p z automatycznym znakiem wodnym ZIEMIA 2.0, cofaniem bufora i przycinaniem początku oraz końca.</p>
+                    <p>Wycinaj ostatnie 5–60 sekund transmisji na żywo w czystej jakości Full HD 1080p ze znakiem wodnym ZIEMIA 2.0.</p>
                 </div>
                 <div class="feature-card">
                     <span class="feature-cmd" onclick="copyCmd('/szukaj', this)">/szukaj</span>
-                    <h3>Wyszukiwarka Shotów</h3>
-                    <p>Błyskawicznie przeszukuj archiwum kanału shoterskiego po nazwie streamera, autorze wycięcia lub słowie kluczowym z opisu akcji.</p>
-                </div>
-                <div class="feature-card">
-                    <span class="feature-cmd" onclick="copyCmd('/montaz_panel_ustaw', this)">/montaz_panel_ustaw</span>
-                    <h3>Studio Montażu</h3>
-                    <p>Przeglądaj wszystkie nagrane shoty w katalogu streamerów i łącz od 2 do 10 wybranych klipów w jedną płynną kompilację wideo.</p>
+                    <h3>Pełny Katalog Shotów</h3>
+                    <p>Przeszukuj wszystkie nagrane filmy konkretnego twórcy, przeglądaj wygodne strony wyników i filtruj klipy po słowach kluczowych.</p>
                 </div>
                 <div class="feature-card">
                     <span class="feature-cmd" onclick="copyCmd('/gif', this)">/gif &amp; /screen</span>
                     <h3>GIF-y HD &amp; Zrzuty PNG</h3>
                     <p>Twórz ostre, animowane GIF-y z pełną paletą 256 barw i znakiem wodnym oraz bezstratne zrzuty ekranu PNG jednym kliknięciem.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-cmd" onclick="copyCmd('/top', this)">/top</span>
+                    <h3>Ranking Społeczności</h3>
+                    <p>Zdobywaj punkty za każdy wycięty materiał, odblokowuj rangi Łowcy i walcz o miejsce na podium Hall of Fame.</p>
                 </div>
             </div>
         </section>
@@ -1741,10 +1805,10 @@
 
     <script>
         const API_BASE = "https://kik-bot-production-4a45.up.railway.app";
-        const STORAGE_LOGS_KEY = "ziemia2_terminal_logs_v3";
-        const STORAGE_USER_SNAPSHOT_KEY = "ziemia2_users_snapshot_v3";
+        const STORAGE_LOGS_KEY = "ziemia2_terminal_logs_v4";
+        const STORAGE_USER_SNAPSHOT_KEY = "ziemia2_users_snapshot_v4";
 
-        const currentStats = { shots: 0, screens: 0, gifs: 0, compilations: 0 };
+        const currentStats = { shots: 0, screens: 0, gifs: 0 };
         let globalLeaderboard = [];
         let activeTerminalFilter = "all";
         let toastTimer = null;
@@ -1758,13 +1822,65 @@
         ];
 
         const BUTTON_EXPLANATIONS = {
-            cont: "<strong>➕ Nagraj dalej (+30s od końca):</strong> Jeśli akcja na streamie nadal trwa, ten przycisk dogrywa kolejne 30 sekund transmisji jako Część 2 bez gubienia ani jednej sekundy!",
+            cont: "<strong>➕ Nagraj dalej (+30s od końca):</strong> Jeśli akcja na transmisji nadal trwa, ten przycisk dogrywa kolejne 30 sekund jako Część 2 bez gubienia ani jednej sekundy!",
             rewind: "<strong>⏪ Cofnij start (+10s od początku):</strong> Spóźniłeś się z wycięciem shota? Bot sięga do ukrytego 10-sekundowego bufora wstecznego i dodaje wcześniejsze 10 sekund na początek nagrania!",
-            desc: "<strong>✏️ Opis:</strong> Otwiera okienko na Discordzie, w którym możesz w każdej chwili nadać shotowi własny tytuł lub zabawny komentarz (dzięki temu łatwiej znajdziesz go komendą /szukaj).",
+            desc: "<strong>✏️ Opis:</strong> Otwiera okienko na Discordzie, w którym możesz w każdej chwili nadać shotowi własny tytuł lub komentarz (ułatwia to późniejsze wyszukiwanie komendą /szukaj).",
             trim_start: "<strong>✂️ Odetnij (-10s od początku):</strong> Ucina pierwsze 10 sekund filmu, jeśli właściwa akcja zaczęła się dopiero w dalszej części nagrania.",
-            trim_end: "<strong>✂️ Odetnij (-10s od końca):</strong> Ucina ostatnie 10 sekund z końca nagrania, pozostawiając samą esencję akcji.",
-            watch: "<strong>🟢 Oglądaj na Kick / Twitch:</strong> Bezpośredni odnośnik przenoszący jednym kliknięciem prosto na kanał streamera."
+            trim_end: "<strong>✂️ Odetnij (-10s od końca):</strong> Ucina ostatnie 10 sekund z końca nagrania, pozostawiając samą esencję akcji."
         };
+
+        /* ================= OBSŁUGA ODTWARZACZA FILMIKU INTRO ================= */
+        function initIntroVideoPlayer() {
+            const box = document.getElementById("introVideoBox");
+            const player = document.getElementById("introVideoPlayer");
+            if (!box || !player) return;
+
+            player.addEventListener("loadeddata", () => {
+                box.classList.add("active");
+            });
+
+            player.addEventListener("error", () => {
+                // Jeśli brak pliku intro.mp4 lokalnie, czekamy na ewentualny link z INTRO_VIDEO_URL z Railway
+            });
+        }
+
+        function setRemoteIntroVideo(url) {
+            if (!url) return;
+            const box = document.getElementById("introVideoBox");
+            const player = document.getElementById("introVideoPlayer");
+            if (!box || !player) return;
+            if (player.getAttribute("data-remote-loaded") === url) return;
+
+            player.setAttribute("data-remote-loaded", url);
+            player.src = url;
+            player.load();
+            player.play().catch(() => {});
+            box.classList.add("active");
+        }
+
+        function toggleIntroSound() {
+            const player = document.getElementById("introVideoPlayer");
+            const btn = document.getElementById("videoSoundBtn");
+            if (!player || !btn) return;
+
+            if (player.muted) {
+                player.muted = false;
+                player.volume = 0.85;
+                player.currentTime = 0;
+                player.play().catch(() => {});
+                btn.innerHTML = "🔊 Wyłącz dźwięk";
+            } else {
+                player.muted = true;
+                btn.innerHTML = "🔇 Włącz dźwięk Intro";
+            }
+        }
+
+        function replayIntroVideo() {
+            const player = document.getElementById("introVideoPlayer");
+            if (!player) return;
+            player.currentTime = 0;
+            player.play().catch(() => {});
+        }
 
         function showToast(message) {
             const box = document.getElementById("toastBox");
@@ -1833,7 +1949,13 @@
             window.requestAnimationFrame(step);
         }
 
-        /* ================= ZARZĄDZANIE HISTORIĄ TERMINALA (FILTRY + SORTOWANIE PO GODZINIE + ODPORNOŚĆ NA F5) ================= */
+        /* ================= ZARZĄDZANIE HISTORIĄ TERMINALA (CZYSTE WPISY BEZ NAZW STREAMERÓW) ================= */
+        function sanitizeActionText(text) {
+            if (!text || typeof text !== "string") return "";
+            // Usuwa dopiski z nazwami streamerów w nawiasach przed wykrzyknikiem, np. " (azdus)!" -> "!"
+            return text.replace(/\s*\([^)]*\)\s*(?=!)/g, "");
+        }
+
         function timeToSeconds(tStr) {
             if (!tStr || typeof tStr !== "string") return -1;
             const parts = tStr.trim().split(":").map(Number);
@@ -1848,7 +1970,10 @@
 
         function sortTerminalLogs(logs) {
             if (!Array.isArray(logs)) return [];
-            return logs.slice().sort((a, b) => {
+            return logs.slice().map(item => ({
+                ...item,
+                action: sanitizeActionText(item.action)
+            })).sort((a, b) => {
                 const secA = timeToSeconds(a.time);
                 const secB = timeToSeconds(b.time);
                 return secB - secA;
@@ -1912,7 +2037,7 @@
                     <div class="term-left">
                         <span class="term-time">${item.time}</span>
                         <span class="term-user">${item.user}</span>
-                        <span>${item.action}</span>
+                        <span>${sanitizeActionText(item.action)}</span>
                     </div>
                     <span class="term-pts">${item.badge}</span>
                 </div>
@@ -1928,7 +2053,7 @@
                 id: id || `${Date.now()}_${Math.random()}`,
                 time: timeStr || new Date().toLocaleTimeString("pl-PL", { hour: "2-digit", minute: "2-digit", second: "2-digit" }),
                 user: userText,
-                action: actionText,
+                action: sanitizeActionText(actionText),
                 badge: badgeText,
                 styleClass: styleClass
             });
@@ -1947,7 +2072,7 @@
                                 ev.id,
                                 ev.time,
                                 ev.user,
-                                ev.text,
+                                sanitizeActionText(ev.text),
                                 ev.pts,
                                 ev.style || ""
                             );
@@ -1980,17 +2105,18 @@
                     const newShots = data.shots ?? 0;
                     const newScreens = data.screens ?? 0;
                     const newGifs = data.gifs ?? 0;
-                    const newComp = data.compilations ?? 0;
 
                     animateValue("stat-shots", currentStats.shots, newShots);
                     animateValue("stat-screens", currentStats.screens, newScreens);
                     animateValue("stat-gifs", currentStats.gifs, newGifs);
-                    animateValue("stat-compilations", currentStats.compilations, newComp);
 
                     currentStats.shots = newShots;
                     currentStats.screens = newScreens;
                     currentStats.gifs = newGifs;
-                    currentStats.compilations = newComp;
+
+                    if (data.intro_video_url) {
+                        setRemoteIntroVideo(data.intro_video_url);
+                    }
                 }
             } catch (e) {
                 if (statusEl) {
@@ -2234,7 +2360,7 @@
             }
         }
 
-        // Uporządkowanie zapisanych logów przy starcie i wyrenderowanie od najnowszej godziny
+        initIntroVideoPlayer();
         saveTerminalLogs(getSavedTerminalLogs());
         renderTerminalFromStorage();
         loadStats();
