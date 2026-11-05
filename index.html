@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZIEMIA 2.0 – Centrum Społeczności & Hall of Fame</title>
+    <title>ZIEMIA 2.0 – Centrum Społeczności</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #07090e;
-            --bg-card: rgba(16, 20, 29, 0.78);
-            --bg-card-hover: rgba(24, 30, 44, 0.92);
+            --bg-base: #06080d;
+            --bg-card: rgba(14, 18, 27, 0.85);
+            --bg-card-hover: rgba(22, 28, 42, 0.95);
             --kick-green: #53fc18;
-            --kick-green-dim: rgba(83, 252, 24, 0.14);
+            --kick-glow: rgba(83, 252, 24, 0.25);
             --twitch-purple: #9146ff;
-            --twitch-purple-dim: rgba(145, 70, 255, 0.16);
-            --text-main: #f3f5f8;
-            --text-muted: #8b95a8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
             --border-subtle: rgba(255, 255, 255, 0.08);
             --gold: #fbbf24;
             --silver: #cbd5e1;
@@ -31,62 +30,59 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--bg-dark);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-base);
             background-image: 
-                radial-gradient(circle at 15% 15%, rgba(83, 252, 24, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 85% 20%, rgba(145, 70, 255, 0.09) 0%, transparent 42%),
-                radial-gradient(circle at 50% 90%, rgba(83, 252, 24, 0.05) 0%, transparent 45%);
+                radial-gradient(circle at 10% 20%, rgba(83, 252, 24, 0.07) 0%, transparent 40%),
+                radial-gradient(circle at 90% 10%, rgba(145, 70, 255, 0.08) 0%, transparent 40%);
             color: var(--text-main);
             min-height: 100vh;
             line-height: 1.5;
-            overflow-x: hidden;
+            padding: 24px 16px 64px;
         }
 
         .container {
-            max-width: 1180px;
+            max-width: 1140px;
             margin: 0 auto;
-            padding: 28px 20px 64px;
         }
 
-        /* NAVBAR */
-        .navbar {
+        /* HEADER */
+        .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 16px 24px;
-            background: rgba(13, 17, 25, 0.82);
-            backdrop-filter: blur(14px);
+            background: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            border-radius: 18px;
-            margin-bottom: 36px;
+            border-radius: 16px;
+            margin-bottom: 32px;
+            backdrop-filter: blur(12px);
         }
 
-        .brand {
+        .logo-group {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
             font-weight: 900;
-            font-size: 1.35rem;
+            font-size: 1.25rem;
             letter-spacing: -0.02em;
         }
 
-        .brand-logo {
-            height: 40px;
+        .logo-img {
+            height: 38px;
             width: auto;
             border-radius: 8px;
-            object-fit: contain;
         }
 
-        .brand-badge {
+        .status-pill {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            font-size: 0.75rem;
+            gap: 8px;
+            font-size: 0.8rem;
             font-weight: 700;
-            padding: 4px 10px;
+            padding: 6px 14px;
             border-radius: 999px;
-            background: var(--kick-green-dim);
+            background: rgba(83, 252, 24, 0.1);
             color: var(--kick-green);
             border: 1px solid rgba(83, 252, 24, 0.3);
         }
@@ -109,15 +105,15 @@
         /* HERO */
         .hero {
             text-align: center;
-            margin-bottom: 42px;
+            margin-bottom: 36px;
         }
 
         .hero h1 {
-            font-size: clamp(2rem, 4.5vw, 3.25rem);
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
             font-weight: 900;
             letter-spacing: -0.03em;
             margin-bottom: 12px;
-            background: linear-gradient(135deg, #ffffff 30%, #a5b4fc 70%, var(--kick-green) 100%);
+            background: linear-gradient(135deg, #fff 40%, var(--kick-green) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -125,406 +121,330 @@
         .hero p {
             color: var(--text-muted);
             font-size: 1.05rem;
-            max-width: 680px;
+            max-width: 600px;
             margin: 0 auto;
         }
 
-        /* INTRO VIDEO */
+        /* WIDEO PROMO */
         #intro-video-wrapper {
             display: none;
-            margin: 0 auto 40px;
-            max-width: 860px;
-            border-radius: 20px;
+            max-width: 800px;
+            margin: 0 auto 36px;
+            border-radius: 18px;
             overflow: hidden;
             border: 1px solid var(--border-subtle);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
             background: #000;
         }
 
         #intro-video-wrapper video {
             width: 100%;
             display: block;
-            max-height: 480px;
         }
 
-        /* STATS CARDS */
+        /* KAFELKI STATYSTYK */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-            margin-bottom: 48px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+            margin-bottom: 36px;
         }
 
         .stat-card {
             background: var(--bg-card);
-            backdrop-filter: blur(12px);
             border: 1px solid var(--border-subtle);
-            border-radius: 20px;
-            padding: 26px 24px;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            border-radius: 18px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.2s, border-color 0.2s;
         }
 
         .stat-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(83, 252, 24, 0.35);
+            border-color: rgba(83, 252, 24, 0.4);
         }
 
         .stat-card.purple-card:hover {
-            border-color: rgba(145, 70, 255, 0.45);
+            border-color: rgba(145, 70, 255, 0.4);
         }
 
-        .stat-header {
+        .stat-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 12px;
         }
 
-        .stat-title {
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--text-muted);
-        }
-
-        .stat-icon {
-            font-size: 1.5rem;
-        }
-
-        .stat-value {
+        .stat-number {
             font-family: 'JetBrains Mono', monospace;
             font-size: 2.5rem;
             font-weight: 800;
+            margin-top: 10px;
             color: var(--text-main);
-            line-height: 1.1;
         }
 
-        .stat-sub {
-            margin-top: 8px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* TERMINAL SECTION */
-        .terminal-section {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 20px;
-            padding: 24px;
-            margin-bottom: 48px;
+        /* TERMINAL NA ŻYWO (SEKCJA DZIAŁAJĄCA) */
+        .terminal-wrapper {
+            background: #0a0d14;
+            border: 1px solid rgba(83, 252, 24, 0.25);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
         }
 
         .terminal-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 16px;
+            padding: 12px 18px;
+            background: rgba(16, 22, 34, 0.9);
+            border-bottom: 1px solid var(--border-subtle);
         }
+
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .terminal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #eab308; }
+        .dot-green { background: #22c55e; }
 
         .terminal-title {
-            font-size: 1.15rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .terminal-box {
-            background: #030406;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 14px;
-            padding: 18px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            max-height: 280px;
-            overflow-y: auto;
-            color: #a7f3d0;
-        }
-
-        .terminal-row {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 8px;
-            line-height: 1.4;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.04);
-            padding-bottom: 6px;
-        }
-
-        .terminal-row:last-child {
-            margin-bottom: 0;
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .t-time {
+            font-size: 0.8rem;
             color: var(--text-muted);
-            flex-shrink: 0;
+            font-weight: 600;
         }
 
-        .t-user {
+        .terminal-body {
+            padding: 16px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.88rem;
+            min-height: 140px;
+            max-height: 240px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .terminal-line {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .term-time {
+            color: #64748b;
+            font-size: 0.78rem;
+        }
+
+        .term-user {
+            color: #38bdf8;
+            font-weight: 700;
+        }
+
+        .term-action {
+            color: #cbd5e1;
+        }
+
+        .term-pts {
             color: var(--kick-green);
             font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .t-text {
-            color: var(--text-main);
-            word-break: break-word;
-        }
-
-        .t-pts {
-            color: var(--gold);
             margin-left: auto;
-            flex-shrink: 0;
-            font-weight: 700;
         }
 
-        /* HALL OF FAME */
+        .purple-line .term-pts {
+            color: var(--twitch-purple);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* RANKING */
         .section-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin-bottom: 20px;
             flex-wrap: wrap;
             gap: 12px;
-            margin-bottom: 24px;
         }
 
         .section-title {
-            font-size: 1.55rem;
+            font-size: 1.45rem;
             font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
-        .scoring-pill {
+        .scoring-badge {
             font-size: 0.8rem;
             color: var(--text-muted);
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-subtle);
+            background: rgba(255, 255, 255, 0.05);
             padding: 6px 14px;
             border-radius: 999px;
+            border: 1px solid var(--border-subtle);
         }
 
-        /* PODIUM TOP 3 */
         .podium-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 28px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+            margin-bottom: 24px;
         }
 
         .podium-card {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            border-radius: 20px;
-            padding: 24px;
+            border-radius: 18px;
+            padding: 22px;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             position: relative;
-            transition: transform 0.2s ease, background 0.2s ease;
         }
 
-        .podium-card:hover {
-            transform: translateY(-4px);
-            background: var(--bg-card-hover);
-        }
+        .podium-card.rank-1 { border-color: rgba(251, 191, 36, 0.5); }
+        .podium-card.rank-2 { border-color: rgba(203, 213, 225, 0.4); }
+        .podium-card.rank-3 { border-color: rgba(217, 119, 6, 0.4); }
 
-        .podium-card.rank-1 {
-            border-color: rgba(251, 191, 36, 0.45);
-            box-shadow: 0 12px 35px rgba(251, 191, 36, 0.08);
-        }
-
-        .podium-card.rank-2 {
-            border-color: rgba(203, 213, 225, 0.35);
-        }
-
-        .podium-card.rank-3 {
-            border-color: rgba(217, 119, 6, 0.4);
-        }
-
-        .rank-badge {
+        .rank-tag {
             position: absolute;
-            top: 16px;
-            right: 16px;
+            top: 14px;
+            right: 14px;
             font-family: 'JetBrains Mono', monospace;
-            font-weight: 800;
-            font-size: 0.85rem;
+            font-weight: 700;
+            font-size: 0.8rem;
             padding: 4px 10px;
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255,255,255,0.06);
         }
 
-        .podium-avatar {
-            width: 76px;
-            height: 76px;
+        .avatar {
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 14px;
-            border: 3px solid var(--border-subtle);
+            margin-bottom: 12px;
+            border: 2px solid var(--border-subtle);
         }
 
-        .rank-1 .podium-avatar { border-color: var(--gold); }
-        .rank-2 .podium-avatar { border-color: var(--silver); }
-        .rank-3 .podium-avatar { border-color: var(--bronze); }
+        .rank-1 .avatar { border-color: var(--gold); }
+        .rank-2 .avatar { border-color: var(--silver); }
+        .rank-3 .avatar { border-color: var(--bronze); }
 
-        .podium-name {
-            font-size: 1.15rem;
+        .user-name {
             font-weight: 800;
+            font-size: 1.1rem;
             margin-bottom: 6px;
-            word-break: break-word;
         }
 
-        .podium-score {
+        .user-score {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 700;
             color: var(--kick-green);
-            background: var(--kick-green-dim);
+            background: rgba(83, 252, 24, 0.12);
             padding: 4px 12px;
             border-radius: 999px;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
-        .podium-metrics {
+        .user-stats {
             display: flex;
-            justify-content: center;
-            gap: 14px;
-            width: 100%;
-            padding-top: 14px;
+            gap: 12px;
             border-top: 1px solid var(--border-subtle);
+            padding-top: 12px;
+            width: 100%;
+            justify-content: center;
             font-size: 0.85rem;
             color: var(--text-muted);
         }
 
-        .podium-metrics span strong {
+        .user-stats strong {
             color: var(--text-main);
             font-family: 'JetBrains Mono', monospace;
         }
 
-        /* LEADERBOARD LIST */
-        .leaderboard-card {
+        .leaderboard-list {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
-            border-radius: 20px;
+            border-radius: 18px;
             overflow: hidden;
         }
 
-        .leaderboard-row {
+        .list-row {
             display: grid;
-            grid-template-columns: 56px 1fr auto;
+            grid-template-columns: 48px 1fr auto;
             align-items: center;
-            gap: 16px;
-            padding: 14px 22px;
+            gap: 14px;
+            padding: 14px 20px;
             border-bottom: 1px solid var(--border-subtle);
-            transition: background 0.15s ease;
         }
 
-        .leaderboard-row:last-child {
-            border-bottom: none;
+        .list-row:last-child { border-bottom: none; }
+
+        .list-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
-        .leaderboard-row:hover {
-            background: var(--bg-card-hover);
-        }
-
-        .row-rank {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 700;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        .row-user {
+        .list-user {
             display: flex;
             align-items: center;
             gap: 12px;
-            min-width: 0;
         }
 
-        .row-avatar {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            object-fit: cover;
-            flex-shrink: 0;
-            border: 1px solid var(--border-subtle);
-        }
-
-        .row-name {
-            font-weight: 700;
-            font-size: 0.98rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .row-stats {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .row-stats .stat-pill {
-            background: rgba(255, 255, 255, 0.04);
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .row-score {
+        .list-score {
             font-family: 'JetBrains Mono', monospace;
             font-weight: 800;
             color: var(--kick-green);
-            min-width: 85px;
             text-align: right;
         }
 
         .footer {
-            margin-top: 56px;
+            margin-top: 48px;
             text-align: center;
-            color: var(--text-muted);
             font-size: 0.85rem;
-        }
-
-        @media (max-width: 680px) {
-            .leaderboard-row {
-                grid-template-columns: 42px 1fr;
-                gap: 10px;
-            }
-            .row-stats {
-                grid-column: 1 / -1;
-                justify-content: space-between;
-                padding-top: 6px;
-            }
+            color: var(--text-muted);
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <nav class="navbar">
-            <div class="brand">
-                <img src="logo.png" alt="ZIEMIA 2.0" class="brand-logo" onerror="this.style.display='none'">
+        <header class="header">
+            <div class="logo-group">
+                <img src="logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
                 <span>ZIEMIA 2.0</span>
             </div>
-            <div class="brand-badge">
+            <div class="status-pill">
                 <span class="pulse-dot"></span>
-                <span>KICK & TWITCH LIVE BOT</span>
+                <span>SYSTEM ONLINE</span>
             </div>
-        </nav>
-
-        <header class="hero">
-            <h1>CENTRUM SPOŁECZNOŚCI ZIEMIA 2.0</h1>
-            <p>Automatyczne shoty 1080p Full HD, zrzuty ekranu PNG oraz animacje GIF 640p tworzone na żywo przez społeczność Discorda.</p>
         </header>
+
+        <section class="hero">
+            <h1>SPOŁECZNOŚĆ ZIEMIA 2.0</h1>
+            <p>Automatyczne shoty 1080p, zrzuty ekranu HD i animacje GIF ze streamów Kick oraz Twitch.</p>
+        </section>
 
         <div id="intro-video-wrapper">
             <video id="intro-video" controls preload="metadata"></video>
@@ -532,71 +452,54 @@
 
         <section class="stats-grid">
             <div class="stat-card">
-                <div class="stat-header">
-                    <span class="stat-title">Wycięte Shoty 1080p</span>
-                    <span class="stat-icon">🎬</span>
-                </div>
-                <div class="stat-value" id="stat-shots">—</div>
-                <div class="stat-sub">Klipów wideo nagranych na serwerze</div>
+                <div class="stat-label"><span>Wycięte Shoty</span> <span>🎬</span></div>
+                <div class="stat-number" id="stat-shots">—</div>
             </div>
-
             <div class="stat-card">
-                <div class="stat-header">
-                    <span class="stat-title">Zrzuty Ekranu HD</span>
-                    <span class="stat-icon">📸</span>
-                </div>
-                <div class="stat-value" id="stat-screens">—</div>
-                <div class="stat-sub">Bezstratnych klatek PNG ze streamów</div>
+                <div class="stat-label"><span>Zrzuty Ekranu HD</span> <span>📸</span></div>
+                <div class="stat-number" id="stat-screens">—</div>
             </div>
-
             <div class="stat-card purple-card">
-                <div class="stat-header">
-                    <span class="stat-title">Animacje GIF 640p</span>
-                    <span class="stat-icon">🎞️</span>
-                </div>
-                <div class="stat-value" id="stat-gifs">—</div>
-                <div class="stat-sub">Wygenerowanych animacji z transmisji</div>
+                <div class="stat-label"><span>Animacje GIF</span> <span>🎞️</span></div>
+                <div class="stat-number" id="stat-gifs">—</div>
             </div>
         </section>
 
-        <section class="terminal-section">
+        <!-- TERMINAL NA ŻYWO -->
+        <section class="terminal-wrapper">
             <div class="terminal-header">
-                <h3 class="terminal-title">💻 Terminal na żywo & Aktywność</h3>
-                <span style="font-size: 0.8rem; color: var(--text-muted);">Ostatnie zdarzenia na serwerze</span>
+                <div class="terminal-dots">
+                    <div class="terminal-dot dot-red"></div>
+                    <div class="terminal-dot dot-yellow"></div>
+                    <div class="terminal-dot dot-green"></div>
+                </div>
+                <div class="terminal-title">live_activity.log — bash</div>
             </div>
-            <div class="terminal-box" id="terminal-box">
-                <div style="color: var(--text-muted); text-align: center; padding: 20px;">Ładowanie aktywności...</div>
+            <div class="terminal-body" id="terminal-content">
+                <div style="color: #64748b;">Inicjalizacja połączenia z terminalem...</div>
             </div>
         </section>
 
+        <!-- RANKING -->
         <section>
             <div class="section-header">
-                <h2 class="section-title">🏆 Hall of Fame – Najaktywniejsi Twórcy</h2>
-                <div class="scoring-pill">Punktacja: 🎬 Shot = <strong>3 pkt</strong> &bull; 🎞️ GIF = <strong>2 pkt</strong> &bull; 📸 Screen = <strong>1 pkt</strong></div>
+                <h2 class="section-title">🏆 Hall of Fame</h2>
+                <div class="scoring-badge">Punktacja: 🎬 3 pkt &bull; 🎞️ 2 pkt &bull; 📸 1 pkt</div>
             </div>
 
-            <div class="podium-grid" id="podium-container"></div>
-            <div class="leaderboard-card" id="leaderboard-container"></div>
+            <div class="podium-grid" id="podium"></div>
+            <div class="leaderboard-list" id="leaderboard"></div>
         </section>
 
         <footer class="footer">
-            <p>ZIEMIA 2.0 &bull; Statystyki synchronizowane automatycznie z serwerem Discord</p>
+            <p>ZIEMIA 2.0 &bull; Discord Bot Infrastructure</p>
         </footer>
     </div>
 
     <script>
         const API_BASE = "";
 
-        function escapeHtml(str) {
-            if (!str) return "";
-            return String(str)
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;");
-        }
-
-        async function fetchAllData() {
+        async function updateData() {
             try {
                 const [statsRes, topRes, actRes] = await Promise.all([
                     fetch(`${API_BASE}/api/stats`),
@@ -606,9 +509,9 @@
 
                 if (statsRes.ok) {
                     const stats = await statsRes.json();
-                    document.getElementById("stat-shots").textContent = (stats.shots ?? 0).toLocaleString("pl-PL");
-                    document.getElementById("stat-screens").textContent = (stats.screens ?? 0).toLocaleString("pl-PL");
-                    document.getElementById("stat-gifs").textContent = (stats.gifs ?? 0).toLocaleString("pl-PL");
+                    document.getElementById("stat-shots").textContent = (stats.shots ?? 0).toLocaleString();
+                    document.getElementById("stat-screens").textContent = (stats.screens ?? 0).toLocaleString();
+                    document.getElementById("stat-gifs").textContent = (stats.gifs ?? 0).toLocaleString();
 
                     const videoWrapper = document.getElementById("intro-video-wrapper");
                     const videoEl = document.getElementById("intro-video");
@@ -619,57 +522,51 @@
                 }
 
                 if (topRes.ok) {
-                    const users = await topRes.json();
-                    renderLeaderboard(Array.isArray(users) ? users : []);
+                    renderLeaderboard(await topRes.json());
                 }
 
                 if (actRes.ok) {
-                    const activity = await actRes.json();
-                    renderActivity(Array.isArray(activity) ? activity : []);
+                    renderTerminal(await actRes.json());
                 }
             } catch (err) {
                 console.warn("Błąd pobierania danych:", err);
             }
         }
 
-        function renderActivity(events) {
-            const box = document.getElementById("terminal-box");
-            if (!events.length) {
-                box.innerHTML = `<div style="color: var(--text-muted); text-align: center;">Brak ostatnich zdarzeń...</div>`;
+        function renderTerminal(items) {
+            const container = document.getElementById("terminal-content");
+            if (!items || !items.length) {
+                container.innerHTML = `<div style="color: #64748b;">Oczekiwanie na nową aktywność...</div>`;
                 return;
             }
 
-            box.innerHTML = events.map(ev => `
-                <div class="terminal-row">
-                    <span class="t-time">[${escapeHtml(ev.time)}]</span>
-                    <span class="t-user">${escapeHtml(ev.user)}</span>
-                    <span class="t-text">${escapeHtml(ev.text)}</span>
-                    <span class="t-pts">${escapeHtml(ev.pts)}</span>
+            container.innerHTML = items.map(ev => `
+                <div class="terminal-line ${ev.style || ''}">
+                    <span class="term-time">[${ev.time || 'NOW'}]</span>
+                    <span class="term-user">&gt; ${ev.user}</span>
+                    <span class="term-action">${ev.text}</span>
+                    <span class="term-pts">${ev.pts}</span>
                 </div>
             `).join("");
         }
 
         function renderLeaderboard(users) {
-            const podiumEl = document.getElementById("podium-container");
-            const listEl = document.getElementById("leaderboard-container");
+            const podium = document.getElementById("podium");
+            const list = document.getElementById("leaderboard");
 
-            if (!users.length) {
-                podiumEl.innerHTML = "";
-                listEl.innerHTML = `<div style="padding: 28px; text-align: center; color: var(--text-muted);">Trwa ładowanie rankingu Hall of Fame...</div>`;
-                return;
-            }
+            if (!users || !users.length) return;
 
             const top3 = users.slice(0, 3);
             const rest = users.slice(3, 25);
             const medals = ["🥇 #1", "🥈 #2", "🥉 #3"];
 
-            podiumEl.innerHTML = top3.map((u, idx) => `
-                <div class="podium-card rank-${idx + 1}">
-                    <span class="rank-badge">${medals[idx]}</span>
-                    <img src="${escapeHtml(u.avatar)}" alt="${escapeHtml(u.name)}" class="podium-avatar" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
-                    <div class="podium-name">${escapeHtml(u.name)}</div>
-                    <div class="podium-score">${u.score} PKT</div>
-                    <div class="podium-metrics">
+            podium.innerHTML = top3.map((u, i) => `
+                <div class="podium-card rank-${i + 1}">
+                    <span class="rank-tag">${medals[i]}</span>
+                    <img src="${u.avatar}" class="avatar" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
+                    <div class="user-name">${u.name}</div>
+                    <div class="user-score">${u.score} PKT</div>
+                    <div class="user-stats">
                         <span>🎬 <strong>${u.shots}</strong></span>
                         <span>🎞️ <strong>${u.gifs}</strong></span>
                         <span>📸 <strong>${u.screens}</strong></span>
@@ -677,30 +574,25 @@
                 </div>
             `).join("");
 
-            if (rest.length > 0) {
-                listEl.style.display = "block";
-                listEl.innerHTML = rest.map(u => `
-                    <div class="leaderboard-row">
-                        <div class="row-rank">#${u.rank}</div>
-                        <div class="row-user">
-                            <img src="${escapeHtml(u.avatar)}" alt="${escapeHtml(u.name)}" class="row-avatar" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
-                            <span class="row-name">${escapeHtml(u.name)}</span>
+            if (rest.length) {
+                list.style.display = "block";
+                list.innerHTML = rest.map(u => `
+                    <div class="list-row">
+                        <div style="font-family: 'JetBrains Mono'; color: var(--text-muted);">#${u.rank}</div>
+                        <div class="list-user">
+                            <img src="${u.avatar}" class="list-avatar" onerror="this.src='https://cdn.discordapp.com/embed/avatars/0.png'">
+                            <span style="font-weight: 700;">${u.name}</span>
                         </div>
-                        <div class="row-stats">
-                            <span class="stat-pill">🎬 ${u.shots}</span>
-                            <span class="stat-pill">🎞️ ${u.gifs}</span>
-                            <span class="stat-pill">📸 ${u.screens}</span>
-                            <span class="row-score">${u.score} PKT</span>
-                        </div>
+                        <div class="list-score">${u.score} PKT</div>
                     </div>
                 `).join("");
             } else {
-                listEl.style.display = "none";
+                list.style.display = "none";
             }
         }
 
-        fetchAllData();
-        setInterval(fetchAllData, 10000);
+        updateData();
+        setInterval(updateData, 10000);
     </script>
 </body>
 </html>
