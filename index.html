@@ -209,7 +209,7 @@
             filter: drop-shadow(0 0 48px rgba(83, 252, 24, 0.45)) drop-shadow(0 0 80px rgba(145, 70, 255, 0.25));
         }
 
-        /* ODTWARZACZ WIDEO INTRO (HALLOWEEN / ZIEMIA 2.0) */
+        /* ODTWARZACZ WIDEO INTRO */
         .intro-video-box {
             display: none;
             position: relative;
@@ -541,165 +541,6 @@
             white-space: nowrap;
         }
 
-        /* ================= TERMINAL AKTYWNOŚCI NA ŻYWO ================= */
-        .terminal-section {
-            margin-bottom: 72px;
-        }
-
-        .terminal-window {
-            background: rgba(8, 11, 15, 0.95);
-            border: 1px solid rgba(83, 252, 24, 0.3);
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(83, 252, 24, 0.06);
-        }
-
-        .terminal-header {
-            background: linear-gradient(90deg, rgba(83, 252, 24, 0.12) 0%, rgba(145, 70, 255, 0.12) 100%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 14px 22px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .terminal-title-group {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .terminal-dots {
-            display: flex;
-            gap: 6px;
-        }
-
-        .terminal-dots span {
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .terminal-dots .d-red { background: #ff5f56; }
-        .terminal-dots .d-yellow { background: #ffbd2e; }
-        .terminal-dots .d-green { background: #27c93f; }
-
-        .terminal-title {
-            font-weight: 700;
-            font-style: italic;
-            font-size: 0.98rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: #ffffff;
-        }
-
-        .terminal-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .term-filter-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: var(--text-muted);
-            font-size: 0.78rem;
-            font-weight: 700;
-            font-style: italic;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            padding: 5px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .term-filter-btn:hover {
-            color: #ffffff;
-            border-color: rgba(83, 252, 24, 0.4);
-        }
-
-        .term-filter-btn.active {
-            background: rgba(83, 252, 24, 0.15);
-            color: var(--kick-green);
-            border-color: var(--kick-green);
-            box-shadow: 0 0 12px rgba(83, 252, 24, 0.2);
-        }
-
-        .terminal-body {
-            padding: 18px 22px;
-            max-height: 280px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .terminal-line {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            padding: 10px 14px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.025);
-            border-left: 3px solid var(--kick-green);
-            font-size: 0.95rem;
-            font-weight: 600;
-            font-style: italic;
-            animation: fadeInSlide 0.35s ease;
-        }
-
-        .terminal-line.purple-line {
-            border-left-color: var(--twitch-purple);
-        }
-
-        .terminal-line.gold-line {
-            border-left-color: var(--gold);
-        }
-
-        @keyframes fadeInSlide {
-            from { opacity: 0; transform: translateX(-8px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .term-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .term-time {
-            color: var(--text-muted);
-            font-size: 0.84rem;
-            font-weight: 700;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2px 8px;
-            border-radius: 6px;
-        }
-
-        .term-user {
-            color: var(--kick-green);
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .term-pts {
-            font-weight: 700;
-            font-size: 0.86rem;
-            color: #ffffff;
-            background: rgba(83, 252, 24, 0.14);
-            border: 1px solid rgba(83, 252, 24, 0.35);
-            padding: 3px 10px;
-            border-radius: 6px;
-            white-space: nowrap;
-        }
-
         /* ================= SECTION HEADINGS ================= */
         .section-header {
             text-align: center;
@@ -729,7 +570,7 @@
             letter-spacing: 0.02em;
         }
 
-        /* ================= SEKCJA "JAK TO DZIAŁA?" (BEZ NAZW STREAMERÓW I BEZ LINKÓW) ================= */
+        /* ================= SEKCJA "JAK TO DZIAŁA?" ================= */
         .showcase-section {
             margin-bottom: 78px;
         }
@@ -1531,7 +1372,6 @@
             </a>
             <div class="nav-links">
                 <a href="#sekcja-statystyki" class="nav-link">📊 Statystyki</a>
-                <a href="#sekcja-terminal" class="nav-link">⚡ Terminal Live</a>
                 <a href="#sekcja-jak-dziala" class="nav-link">🎬 Jak to działa</a>
                 <a href="#sekcja-ranking" class="nav-link">🏆 Hall of Fame</a>
                 <a href="#sekcja-komendy" class="nav-link">💻 Komendy</a>
@@ -1549,7 +1389,7 @@
                 <img src="logo.png" alt="ZIEMIA 2.0 Logo" onerror="this.style.display='none'">
             </div>
 
-            <!-- ODTWARZACZ FILMIKU INTRO (WCZYTUJE intro.mp4 LUB ZMIENNĄ INTRO_VIDEO_URL Z RAILWAY) -->
+            <!-- ODTWARZACZ FILMIKU INTRO -->
             <div class="intro-video-box" id="introVideoBox">
                 <video id="introVideoPlayer" src="intro.mp4" autoplay loop muted playsinline></video>
                 <div class="video-controls-overlay">
@@ -1588,7 +1428,7 @@
                 </a>
             </div>
 
-            <!-- PASEK STATUSU POD PRZYCISKIEM DISCORDA (ONLINE + PING API) -->
+            <!-- PASEK STATUSU POD PRZYCISKIEM DISCORDA -->
             <div class="telemetry-bar">
                 <div class="telemetry-item">
                     <span class="status-dot"></span>
@@ -1619,30 +1459,7 @@
             </div>
         </section>
 
-        <!-- TEKSTOWY TERMINAL AKTYWNOŚCI NA ŻYWO (BEZ NAZW STREAMERÓW) -->
-        <section id="sekcja-terminal" class="terminal-section">
-            <div class="terminal-window">
-                <div class="terminal-header">
-                    <div class="terminal-title-group">
-                        <div class="terminal-dots">
-                            <span class="d-red"></span>
-                            <span class="d-yellow"></span>
-                            <span class="d-green"></span>
-                        </div>
-                        <span class="terminal-title">⚡ TERMINAL AKTYWNOŚCI SPOŁECZNOŚCI // LIVE FEED</span>
-                    </div>
-                    <div class="terminal-controls">
-                        <button class="term-filter-btn active" onclick="setTerminalFilter('all', this)">Wszystkie</button>
-                        <button class="term-filter-btn" onclick="setTerminalFilter('shot', this)">🎬 Shoty</button>
-                        <button class="term-filter-btn" onclick="setTerminalFilter('gif', this)">🎞️ GIF-y</button>
-                        <button class="term-filter-btn" onclick="setTerminalFilter('screen', this)">📸 Screeny</button>
-                    </div>
-                </div>
-                <div class="terminal-body" id="activity-terminal"></div>
-            </div>
-        </section>
-
-        <!-- SEKCJA: JAK TO DZIAŁA? (BEZ NAZW STREAMERÓW I BEZ LINKU DO STREAMA W PRZYKŁADOWEJ WIADOMOŚCI) -->
+        <!-- SEKCJA: JAK TO DZIAŁA? -->
         <section id="sekcja-jak-dziala" class="showcase-section">
             <div class="section-header">
                 <h2 class="section-title">🎬 Jak Działa <span>Kik-Bot?</span></h2>
@@ -1696,7 +1513,7 @@
             </div>
         </section>
 
-        <!-- HALL OF FAME + WYSZUKIWARKA GRACZA (KARTA ŁOWCY) + SYSTEM RANG I ODZNAK -->
+        <!-- HALL OF FAME + WYSZUKIWARKA GRACZA (KARTA ŁOWCY) -->
         <section id="sekcja-ranking" class="hof-section">
             <div class="section-header">
                 <h2 class="section-title">🏆 Ranking <span>Hall of Fame</span></h2>
@@ -1805,12 +1622,9 @@
 
     <script>
         const API_BASE = "https://kik-bot-production-4a45.up.railway.app";
-        const STORAGE_LOGS_KEY = "ziemia2_terminal_logs_v4";
-        const STORAGE_USER_SNAPSHOT_KEY = "ziemia2_users_snapshot_v4";
 
         const currentStats = { shots: 0, screens: 0, gifs: 0 };
         let globalLeaderboard = [];
-        let activeTerminalFilter = "all";
         let toastTimer = null;
 
         const RANKS = [
@@ -1839,9 +1653,7 @@
                 box.classList.add("active");
             });
 
-            player.addEventListener("error", () => {
-                // Jeśli brak pliku intro.mp4 lokalnie, czekamy na ewentualny link z INTRO_VIDEO_URL z Railway
-            });
+            player.addEventListener("error", () => {});
         }
 
         function setRemoteIntroVideo(url) {
@@ -1947,139 +1759,6 @@
                 }
             };
             window.requestAnimationFrame(step);
-        }
-
-        /* ================= ZARZĄDZANIE HISTORIĄ TERMINALA (CZYSTE WPISY BEZ NAZW STREAMERÓW) ================= */
-        function sanitizeActionText(text) {
-            if (!text || typeof text !== "string") return "";
-            // Usuwa dopiski z nazwami streamerów w nawiasach przed wykrzyknikiem, np. " (azdus)!" -> "!"
-            return text.replace(/\s*\([^)]*\)\s*(?=!)/g, "");
-        }
-
-        function timeToSeconds(tStr) {
-            if (!tStr || typeof tStr !== "string") return -1;
-            const parts = tStr.trim().split(":").map(Number);
-            if (parts.length >= 2 && !isNaN(parts[0]) && !isNaN(parts[1])) {
-                const h = parts[0] || 0;
-                const m = parts[1] || 0;
-                const s = parts[2] || 0;
-                return (h * 3600) + (m * 60) + s;
-            }
-            return -1;
-        }
-
-        function sortTerminalLogs(logs) {
-            if (!Array.isArray(logs)) return [];
-            return logs.slice().map(item => ({
-                ...item,
-                action: sanitizeActionText(item.action)
-            })).sort((a, b) => {
-                const secA = timeToSeconds(a.time);
-                const secB = timeToSeconds(b.time);
-                return secB - secA;
-            });
-        }
-
-        function getSavedTerminalLogs() {
-            try {
-                const raw = localStorage.getItem(STORAGE_LOGS_KEY);
-                const parsed = raw ? JSON.parse(raw) : [];
-                return sortTerminalLogs(parsed);
-            } catch (e) {
-                return [];
-            }
-        }
-
-        function saveTerminalLogs(logs) {
-            try {
-                const sorted = sortTerminalLogs(logs).slice(0, 15);
-                localStorage.setItem(STORAGE_LOGS_KEY, JSON.stringify(sorted));
-            } catch (e) {}
-        }
-
-        function setTerminalFilter(filterType, btnEl) {
-            activeTerminalFilter = filterType;
-            document.querySelectorAll(".term-filter-btn").forEach(b => b.classList.remove("active"));
-            if (btnEl) btnEl.classList.add("active");
-            renderTerminalFromStorage();
-        }
-
-        function matchesFilter(item, filterType) {
-            if (filterType === "all") return true;
-            const act = (item.action || "").toLowerCase();
-            if (filterType === "shot") return act.includes("shot");
-            if (filterType === "gif") return act.includes("gif") || act.includes("animac");
-            if (filterType === "screen") return act.includes("screen") || act.includes("zrzut");
-            return true;
-        }
-
-        function renderTerminalFromStorage() {
-            const term = document.getElementById("activity-terminal");
-            if (!term) return;
-            const allLogs = getSavedTerminalLogs();
-            const logs = allLogs.filter(item => matchesFilter(item, activeTerminalFilter));
-
-            if (logs.length === 0) {
-                term.innerHTML = `
-                    <div class="terminal-line">
-                        <div class="term-left">
-                            <span class="term-time">ONLINE</span>
-                            <span class="term-user">SYSTEM</span>
-                            <span>Brak wpisów w wybranej kategorii lub trwa synchronizacja z serwerem...</span>
-                        </div>
-                        <span class="term-pts">LIVE</span>
-                    </div>
-                `;
-                return;
-            }
-            term.innerHTML = logs.map(item => `
-                <div class="terminal-line ${item.styleClass || ''}">
-                    <div class="term-left">
-                        <span class="term-time">${item.time}</span>
-                        <span class="term-user">${item.user}</span>
-                        <span>${sanitizeActionText(item.action)}</span>
-                    </div>
-                    <span class="term-pts">${item.badge}</span>
-                </div>
-            `).join("");
-        }
-
-        function addPersistentTerminalLog(id, timeStr, userText, actionText, badgeText, styleClass = "") {
-            const logs = getSavedTerminalLogs();
-            if (id && logs.some(x => x.id === id)) {
-                return;
-            }
-            logs.push({
-                id: id || `${Date.now()}_${Math.random()}`,
-                time: timeStr || new Date().toLocaleTimeString("pl-PL", { hour: "2-digit", minute: "2-digit", second: "2-digit" }),
-                user: userText,
-                action: sanitizeActionText(actionText),
-                badge: badgeText,
-                styleClass: styleClass
-            });
-            saveTerminalLogs(logs);
-            renderTerminalFromStorage();
-        }
-
-        async function loadActivityFeed() {
-            try {
-                const res = await fetch(`${API_BASE}/api/activity`);
-                if (res.ok) {
-                    const events = await res.json();
-                    if (Array.isArray(events) && events.length > 0) {
-                        events.forEach(ev => {
-                            addPersistentTerminalLog(
-                                ev.id,
-                                ev.time,
-                                ev.user,
-                                sanitizeActionText(ev.text),
-                                ev.pts,
-                                ev.style || ""
-                            );
-                        });
-                    }
-                }
-            } catch (e) {}
         }
 
         async function loadStats() {
@@ -2208,78 +1887,6 @@
             }
         }
 
-        function detectUserChangesForTerminal(list) {
-            let prevMap = {};
-            try {
-                const raw = localStorage.getItem(STORAGE_USER_SNAPSHOT_KEY);
-                if (raw) prevMap = JSON.parse(raw);
-            } catch (e) {}
-
-            const hasPreviousSnapshot = Object.keys(prevMap).length > 0;
-            const newMap = {};
-            const nowTime = new Date().toLocaleTimeString("pl-PL", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
-
-            list.forEach(u => {
-                const key = (u.name || "").toLowerCase();
-                if (!key) return;
-                newMap[key] = { shots: u.shots || 0, gifs: u.gifs || 0, screens: u.screens || 0, score: u.score || 0 };
-
-                if (hasPreviousSnapshot && prevMap[key]) {
-                    const diffShots = (u.shots || 0) - (prevMap[key].shots || 0);
-                    const diffGifs = (u.gifs || 0) - (prevMap[key].gifs || 0);
-                    const diffScreens = (u.screens || 0) - (prevMap[key].screens || 0);
-
-                    if (diffShots > 0) {
-                        addPersistentTerminalLog(
-                            `shot_${key}_${u.shots}`,
-                            nowTime,
-                            u.name,
-                            `wyciął nowego shota 1080p na serwerze Discord! (Łącznie: 🎬 ${u.shots})`,
-                            `+${diffShots * 3} PKT`
-                        );
-                    }
-                    if (diffGifs > 0) {
-                        addPersistentTerminalLog(
-                            `gif_${key}_${u.gifs}`,
-                            nowTime,
-                            u.name,
-                            `stworzył nową animację GIF HD ze streama! (Łącznie: 🎞️ ${u.gifs})`,
-                            `+${diffGifs * 2} PKT`,
-                            "purple-line"
-                        );
-                    }
-                    if (diffScreens > 0) {
-                        addPersistentTerminalLog(
-                            `scr_${key}_${u.screens}`,
-                            nowTime,
-                            u.name,
-                            `zapisał nowy zrzut ekranu PNG HD! (Łącznie: 📸 ${u.screens})`,
-                            `+${diffScreens} PKT`
-                        );
-                    }
-                }
-            });
-
-            try {
-                localStorage.setItem(STORAGE_USER_SNAPSHOT_KEY, JSON.stringify(newMap));
-            } catch (e) {}
-
-            if (getSavedTerminalLogs().length === 0 && list.length > 0) {
-                list.slice(0, 5).forEach((u, i) => {
-                    const rInfo = getRankInfo(u.score);
-                    const lineStyle = u.rank === 1 ? "gold-line" : (i % 2 === 0 ? "" : "purple-line");
-                    addPersistentTerminalLog(
-                        `init_${u.name}_${u.score}`,
-                        nowTime,
-                        u.name,
-                        `posiada rangę [${rInfo.current}] • Wyciął 🎬 ${u.shots} shotów, 📸 ${u.screens} screenów, 🎞️ ${u.gifs} gifów`,
-                        `${u.score} PKT`,
-                        lineStyle
-                    );
-                });
-            }
-        }
-
         async function loadLeaderboard() {
             const container = document.getElementById("leaderboard-list");
             try {
@@ -2292,8 +1899,6 @@
                         container.innerHTML = `<p style="text-align:center; color:var(--text-muted);">Brak zapisanej aktywności.</p>`;
                         return;
                     }
-
-                    detectUserChangesForTerminal(list);
 
                     const maxShots = Math.max(...list.map(x => x.shots || 0), 0);
                     const maxScreens = Math.max(...list.map(x => x.screens || 0), 0);
@@ -2361,15 +1966,11 @@
         }
 
         initIntroVideoPlayer();
-        saveTerminalLogs(getSavedTerminalLogs());
-        renderTerminalFromStorage();
         loadStats();
         loadLeaderboard();
-        loadActivityFeed();
 
         setInterval(loadStats, 20000);
         setInterval(loadLeaderboard, 25000);
-        setInterval(loadActivityFeed, 20000);
     </script>
 </body>
 </html>
